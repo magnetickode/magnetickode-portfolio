@@ -5,7 +5,7 @@ import Routes from "./Routes";
 
 const App: React.FC = () => {
   return (
-    <Router>
+    <Router data-test="AppComponent">
       <div>
         <Routes />
       </div>
