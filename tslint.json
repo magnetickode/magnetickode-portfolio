@@ -5,6 +5,7 @@
     "prettier": true,
     "interface-name": false,
     "ordered-imports": false,
-    "object-literal-sort-keys": false
+    "object-literal-sort-keys": false,
+    "one-variable-per-declaration": false
   }
 }

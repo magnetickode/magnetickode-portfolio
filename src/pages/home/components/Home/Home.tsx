@@ -7,7 +7,7 @@ const StyledHome = styled.div`
 
 const Home: React.FC = () => (
   <StyledHome>
-    <p>Hello</p>
+    <p />
   </StyledHome>
 );
 

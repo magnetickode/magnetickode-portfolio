@@ -1,3 +1,4 @@
+import { MainThemeType } from "./types";
 import backgroundImage from "./assets/images/background.jpg";
 
 const hexToRgb = (hex: string): string | null => {
@@ -9,14 +10,6 @@ const hexToRgb = (hex: string): string | null => {
   }
 };
 
-export interface MainThemeType {
-  primaryColor: string;
-  secondaryColor: string;
-  primaryColorRgba: (opacity: number) => string;
-  secondaryColorRgba: (opacity: number) => string;
-  backgroundImage: string;
-}
-
 export const mainTheme: MainThemeType = {
   primaryColor: "#647DEE",
   secondaryColor: "#7F53AC",
@@ -26,5 +19,6 @@ export const mainTheme: MainThemeType = {
   secondaryColorRgba(opacity) {
     return `rgba(${hexToRgb(this.secondaryColor)}, ${opacity})`;
   },
+  textColor: "#FFF",
   backgroundImage: `url(${backgroundImage})`
 };
