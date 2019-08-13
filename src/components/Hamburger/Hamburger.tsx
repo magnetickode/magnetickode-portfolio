@@ -4,18 +4,21 @@ import styled from "styled-components";
 import { Props, StyledHamburgerProps } from "./types";
 
 const StyledHamburger = styled.div<StyledHamburgerProps>`
+  width: 4rem;
   margin: 1em;
-  width: 40px;
+  padding-right: 2.5rem;
+  transform: scale(0.8);
+  cursor: pointer;
 
   :after,
   :before,
   & > div {
     background-color: ${({ theme }) => theme.textColor};
-    border-radius: 3px;
+    border-radius: 0.3rem;
     content: "";
     display: block;
-    height: 5px;
-    margin: 7px 0;
+    height: 0.5rem;
+    margin: 0.7rem 0;
     transition: all 0.2s ease-in-out;
   }
 
@@ -37,7 +40,11 @@ const StyledHamburger = styled.div<StyledHamburgerProps>`
 `;
 
 const Hamburger = ({ opened, toggleHamburger }: Props) => (
-  <StyledHamburger onClick={toggleHamburger} opened={opened}>
+  <StyledHamburger
+    onClick={toggleHamburger}
+    opened={opened}
+    data-test="HamburgerComponent"
+  >
     <div />
   </StyledHamburger>
 );

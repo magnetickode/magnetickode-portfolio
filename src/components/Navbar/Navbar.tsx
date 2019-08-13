@@ -6,6 +6,8 @@ import Hamburger from "../Hamburger";
 
 const StyledNavbar = styled.div`
   display: flex;
+  justify-content: space-between;
+  align-items: center;
 `;
 
 const Logo = styled.div`
@@ -18,6 +20,7 @@ const Logo = styled.div`
   border-radius: 6rem;
   font-family: "Pacifico", cursive;
   font-size: 3.2rem;
+  user-select: none;
 `;
 
 const Navbar: React.FC = () => {
@@ -31,7 +34,6 @@ const Navbar: React.FC = () => {
     <StyledNavbar>
       <Logo>mk</Logo>
       <Hamburger opened={hamburgerOpened} toggleHamburger={toggleHamburger} />
-      <p>{consumeContext.isDesktop ? "Desktop" : "Mobile"}</p>
     </StyledNavbar>
   );
 };
