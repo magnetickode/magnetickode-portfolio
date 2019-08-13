@@ -1,7 +1,8 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import styled from "styled-components";
 
 import Context from "../../context";
+import Hamburger from "../Hamburger";
 
 const StyledNavbar = styled.div`
   display: flex;
@@ -21,9 +22,15 @@ const Logo = styled.div`
 
 const Navbar: React.FC = () => {
   const consumeContext = useContext(Context);
+
+  const [hamburgerOpened, setHamburger] = useState(false);
+
+  const toggleHamburger = () => setHamburger(prevState => !prevState);
+
   return (
     <StyledNavbar>
       <Logo>mk</Logo>
+      <Hamburger opened={hamburgerOpened} toggleHamburger={toggleHamburger} />
       <p>{consumeContext.isDesktop ? "Desktop" : "Mobile"}</p>
     </StyledNavbar>
   );

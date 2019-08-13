@@ -1,11 +1,19 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`matches snapshot 1`] = `
-<BrowserRouter
+<ContextProvider
   data-test="AppComponent"
+  value={
+    Object {
+      "isDesktop": true,
+    }
+  }
 >
-  <div>
-    <Routes />
-  </div>
-</BrowserRouter>
+  <BrowserRouter>
+    <styled.div>
+      <Navbar />
+      <Routes />
+    </styled.div>
+  </BrowserRouter>
+</ContextProvider>
 `;

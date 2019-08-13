@@ -48,7 +48,7 @@ const App: React.FC = () => {
   useEffect(() => {
     window.addEventListener("resize", onResize);
 
-    // return () => window.removeEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
   }, [onResize]);
 
   return (
