@@ -1,41 +1,17 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { ThemeProvider, createGlobalStyle } from "styled-components";
+import { Provider } from "react-redux";
 
-import App from "./App";
-import { mainTheme } from "./theme";
-import { MainThemeType } from "./types";
+import App from "./containers/App";
+import initStore from "./store/initSore";
 import * as serviceWorker from "./serviceWorker";
 
-const GlobalStyle = createGlobalStyle<{ theme: MainThemeType }>`
-  html {
-    font-size: 62.5%;
-  }
-
-  body {
-      @import url('https://fonts.googleapis.com/css?family=Lato:400,700|Pacifico&display=swap');
-      margin: 0;
-      font-family: "Lato", sans-serif;
-      font-size: 1.6rem;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      background-image: linear-gradient(
-        to right,
-        ${({ theme }) => theme.primaryColorRgba(0.9)}, 
-        ${({ theme }) => theme.secondaryColorRgba(0.9)}),
-        ${({ theme }) => theme.backgroundImage};     
-      background-size: cover;
-      color: ${({ theme }) => theme.textColor}
-  }
-`;
+export const store = initStore();
 
 ReactDOM.render(
-  <ThemeProvider theme={mainTheme}>
-    <>
-      <GlobalStyle />
-      <App />
-    </>
-  </ThemeProvider>,
+  <Provider store={store}>
+    <App />
+  </Provider>,
   document.getElementById("root")
 );
 

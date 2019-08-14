@@ -5,8 +5,6 @@ import { Props, StyledHamburgerProps } from "./types";
 
 const StyledHamburger = styled.div<StyledHamburgerProps>`
   width: 4rem;
-  margin: 1em;
-  padding-right: 2.5rem;
   transform: scale(0.8);
   cursor: pointer;
 

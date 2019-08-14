@@ -1,8 +1,8 @@
 import React from "react";
 import { shallow, ShallowWrapper } from "enzyme";
 
-import Hamburger from "./Hamburger";
-import { Props } from "./types";
+import Hamburger from "../../components/Hamburger/Hamburger";
+import { Props } from "../../components/Hamburger/types";
 
 let wrapper: ShallowWrapper;
 

@@ -1,8 +1,8 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
-import Context from "../../context";
 import Hamburger from "../Hamburger";
+import { Props } from "./types";
 
 const StyledNavbar = styled.div`
   display: flex;
@@ -21,19 +21,24 @@ const Logo = styled.div`
   font-family: "Pacifico", cursive;
   font-size: 3.2rem;
   user-select: none;
+  cursor: pointer;
 `;
 
-const Navbar: React.FC = () => {
-  const consumeContext = useContext(Context);
-
+const Navbar: React.FC<Props> = ({ isDesktop, changeTheme }) => {
   const [hamburgerOpened, setHamburger] = useState(false);
 
   const toggleHamburger = () => setHamburger(prevState => !prevState);
 
   return (
     <StyledNavbar>
-      <Logo>mk</Logo>
-      <Hamburger opened={hamburgerOpened} toggleHamburger={toggleHamburger} />
+      <Logo onClick={changeTheme}>mk</Logo>
+      {isDesktop ? (
+        <p>Desktop</p>
+      ) : (
+        <>
+          <Hamburger opened={hamburgerOpened} toggleHamburger={toggleHamburger} />
+        </>
+      )}
     </StyledNavbar>
   );
 };
