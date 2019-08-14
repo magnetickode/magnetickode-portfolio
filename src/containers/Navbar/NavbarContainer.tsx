@@ -8,8 +8,9 @@ import { ReduxState } from "../../store/reducers/types";
 
 const NavbarContainer: React.FC<Props> = props => <Navbar {...props} />;
 
-const mapStateToProps = ({ main: { isDesktop } }: ReduxState) => ({
-  isDesktop
+const mapStateToProps = ({ main: { isDesktop, stickyNavVisible } }: ReduxState) => ({
+  isDesktop,
+  stickyNavVisible
 });
 
 const mapDispatchToProps = {

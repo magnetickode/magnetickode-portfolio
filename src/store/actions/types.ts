@@ -1,19 +1,31 @@
 type ScreenSizeChangedPayload = "toMobile" | "toDesktop";
 
-interface ScreenSizeChanged {
+interface ScreenSizeChangedAction {
   type: "SCREEN_SIZE_CHANGED";
-  payload: "toMobile" | "toDesktop";
+  payload: ScreenSizeChangedPayload;
 }
 
 export type ScreenSizeChangedGen = (
   payload: ScreenSizeChangedPayload
-) => ScreenSizeChanged;
+) => ScreenSizeChangedAction;
 
-interface ChangeTheme {
+interface ChangeThemeAction {
   type: "CHANGE_THEME";
   payload: null | undefined;
 }
 
-export type ChangeThemeGen = () => ChangeTheme;
+export type ChangeThemeGen = () => ChangeThemeAction;
 
-export type MainAction = ScreenSizeChanged | ChangeTheme;
+type ShowStickyNavPayload = boolean;
+
+interface ShowStickyNavAction {
+  type: "SHOW_STICKY_NAV";
+  payload: ShowStickyNavPayload;
+}
+
+export type ShowStickyNavGen = (payload: ShowStickyNavPayload) => ShowStickyNavAction;
+
+export type MainAction =
+  | ScreenSizeChangedAction
+  | ChangeThemeAction
+  | ShowStickyNavAction;

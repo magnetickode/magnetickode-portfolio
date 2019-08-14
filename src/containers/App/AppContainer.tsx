@@ -1,15 +1,24 @@
-import React, { useEffect, useCallback } from "react";
+import React, { useEffect, useCallback, useRef } from "react";
 import { connect } from "react-redux";
 import { ThemeProvider } from "styled-components";
 
 import App from "../../components/App";
-import { screenSizeChanged } from "../../store/actions/mainActions";
+import { screenSizeChanged, showStickyNav } from "../../store/actions/mainActions";
 import getTheme from "../../utils/getTheme/getTheme";
 import { Props } from "./types";
 import { ReduxState } from "../../store/reducers/types";
 
-const AppContainer: React.FC<Props> = ({ isDesktop, themeIndex, screenSizeChanged }) => {
+const AppContainer: React.FC<Props> = ({
+  isDesktop,
+  themeIndex,
+  stickyNavVisible,
+  screenSizeChanged,
+  showStickyNav
+}) => {
+  const navbarRef = useRef<HTMLDivElement>(null);
+
   const screenSizeChangedMemoized = useCallback(screenSizeChanged, []);
+  const showStickyNavMemoized = useCallback(showStickyNav, []);
 
   const onResize = useCallback(() => {
     if (!isDesktop && window.innerWidth >= 720) {
@@ -18,6 +27,18 @@ const AppContainer: React.FC<Props> = ({ isDesktop, themeIndex, screenSizeChange
       screenSizeChangedMemoized("toMobile");
     }
   }, [isDesktop, screenSizeChangedMemoized]);
+
+  const onScroll = useCallback(() => {
+    if (
+      !stickyNavVisible &&
+      navbarRef.current &&
+      window.scrollY > navbarRef.current.offsetHeight / 10
+    ) {
+      showStickyNavMemoized(true);
+    } else if (stickyNavVisible && window.scrollY === 0) {
+      showStickyNavMemoized(false);
+    }
+  }, [navbarRef, stickyNavVisible, showStickyNavMemoized]);
 
   // Determine if screen is desktop size at the firt render
 
@@ -35,20 +56,30 @@ const AppContainer: React.FC<Props> = ({ isDesktop, themeIndex, screenSizeChange
     return () => window.removeEventListener("resize", onResize);
   }, [onResize]);
 
+  // Set up scroll listener to determine whether or not to show sticky nav
+
+  useEffect(() => {
+    window.addEventListener("scroll", onScroll);
+  }, [onScroll]);
+
   return (
     <ThemeProvider theme={getTheme(themeIndex)}>
-      <App />
+      <App navbarRef={navbarRef} />
     </ThemeProvider>
   );
 };
 
-const mapStateToProps = ({ main: { isDesktop, themeIndex } }: ReduxState) => ({
+const mapStateToProps = ({
+  main: { isDesktop, themeIndex, stickyNavVisible }
+}: ReduxState) => ({
   isDesktop,
-  themeIndex
+  themeIndex,
+  stickyNavVisible
 });
 
 const mapDispatchToProps = {
-  screenSizeChanged
+  screenSizeChanged,
+  showStickyNav
 };
 
 export default connect(

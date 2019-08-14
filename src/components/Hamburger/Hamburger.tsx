@@ -11,7 +11,8 @@ const StyledHamburger = styled.div<StyledHamburgerProps>`
   :after,
   :before,
   & > div {
-    background-color: ${({ theme }) => theme.textColor};
+    background-color: ${({ sticky, theme }) =>
+      sticky ? theme.primaryColor : theme.textColor};
     border-radius: 0.3rem;
     content: "";
     display: block;
@@ -37,10 +38,11 @@ const StyledHamburger = styled.div<StyledHamburgerProps>`
   `}
 `;
 
-const Hamburger = ({ opened, toggleHamburger }: Props) => (
+const Hamburger = ({ opened, sticky, toggleHamburger }: Props) => (
   <StyledHamburger
-    onClick={toggleHamburger}
     opened={opened}
+    sticky={sticky}
+    onClick={toggleHamburger}
     data-test="HamburgerComponent"
   >
     <div />

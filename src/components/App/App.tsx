@@ -4,6 +4,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 
 import Routes from "../../Routes";
 import Navbar from "../../containers/Navbar";
+import { Props } from "./types";
 import { Theme } from "../../utils/getTheme/types";
 
 const GlobalStyle = createGlobalStyle<{ theme: Theme }>`
@@ -27,6 +28,7 @@ const GlobalStyle = createGlobalStyle<{ theme: Theme }>`
         ${({ theme }) => theme.backgroundImage};     
       background-size: cover;
       background-position: center;
+      background-attachment: fixed;
       height: 100%;
       color: ${({ theme }) => theme.textColor};
       transition: color 0.2s ease-in-out;
@@ -37,17 +39,21 @@ const StyledApp = styled.div`
   width: 110rem;
   max-width: 100%;
   margin: auto;
-  padding: 3.5rem 2rem 0 2rem;
+  padding: 8rem 2rem 0 2rem;
   box-sizing: border-box;
   overflow: hidden;
+
+  @media (min-width: 720px) {
+    padding-top: 15rem;
+  }
 `;
 
-const App: React.FC = () => (
+const App: React.FC<Props> = ({ navbarRef }) => (
   <>
     <GlobalStyle data-test="AppComponent" />
     <Router>
       <StyledApp>
-        <Navbar />
+        <Navbar navbarRef={navbarRef} />
         <Routes />
       </StyledApp>
     </Router>
