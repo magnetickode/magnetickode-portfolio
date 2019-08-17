@@ -3,6 +3,8 @@ import { MutableRefObject } from "react";
 import { ChangeThemeGen } from "../../store/actions/types";
 
 export interface Props {
+  hamburgerOpened: boolean;
+  toggleHamburger: () => void;
   navbarRef?: MutableRefObject<HTMLDivElement | null>;
   isDesktop: boolean;
   stickyNavVisible: boolean;

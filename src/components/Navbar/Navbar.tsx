@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 
 import Hamburger from "../Hamburger";
+import MobileNav from "../MobileNav";
 import { Props, StyledNavbarProps, LogoProps } from "./types";
 
 const StyledNavbar = styled.div<StyledNavbarProps>`
@@ -52,36 +53,35 @@ const Logo = styled.div<LogoProps>`
 `;
 
 const Navbar: React.FC<Props> = ({
+  hamburgerOpened,
+  toggleHamburger,
   navbarRef,
   isDesktop,
   stickyNavVisible,
   changeTheme
-}) => {
-  const [hamburgerOpened, setHamburger] = useState(false);
-
-  const toggleHamburger = () => setHamburger(prevState => !prevState);
-
-  return (
-    <StyledNavbar data-test="NavbarComponent" ref={navbarRef} sticky={stickyNavVisible}>
-      <div>
-        <Logo isDesktop={isDesktop} sticky={stickyNavVisible} onClick={changeTheme}>
-          mk
-        </Logo>
-        {isDesktop ? (
-          <p>Desktop</p>
-        ) : (
-          <>
-            <Hamburger
-              data-test="Hamburger"
-              opened={hamburgerOpened}
-              sticky={stickyNavVisible}
-              toggleHamburger={toggleHamburger}
-            />
-          </>
-        )}
-      </div>
-    </StyledNavbar>
-  );
-};
+}) => (
+  <StyledNavbar data-test="NavbarComponent" ref={navbarRef} sticky={stickyNavVisible}>
+    <div>
+      <Logo isDesktop={isDesktop} sticky={stickyNavVisible} onClick={changeTheme}>
+        mk
+      </Logo>
+      {isDesktop ? (
+        <p>Desktop</p>
+      ) : (
+        <>
+          <Hamburger
+            data-test="Hamburger"
+            opened={hamburgerOpened}
+            sticky={stickyNavVisible}
+            toggleHamburger={toggleHamburger}
+          />
+          {hamburgerOpened && (
+            <MobileNav data-test="MobileNav" sticky={stickyNavVisible} />
+          )}
+        </>
+      )}
+    </div>
+  </StyledNavbar>
+);
 
 export default Navbar;

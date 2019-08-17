@@ -13,11 +13,11 @@ const StyledHamburger = styled.div<StyledHamburgerProps>`
   & > div {
     background-color: ${({ sticky, theme }) =>
       sticky ? theme.primaryColor : theme.textColor};
-    border-radius: 0.3rem;
+    border-radius: 3px;
     content: "";
     display: block;
-    height: 0.5rem;
-    margin: 0.7rem 0;
+    height: 5px;
+    margin: 7px 0;
     transition: all 0.2s ease-in-out;
   }
 

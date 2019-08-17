@@ -31,7 +31,6 @@ const GlobalStyle = createGlobalStyle<{ theme: Theme }>`
       background-attachment: fixed;
       height: 100%;
       color: ${({ theme }) => theme.textColor};
-      transition: color 0.2s ease-in-out;
   }
 `;
 
@@ -42,6 +41,7 @@ const StyledApp = styled.div`
   padding: 8rem 2rem 0 2rem;
   box-sizing: border-box;
   overflow: hidden;
+  transition: color 0.2s ease-in-out;
 
   @media (min-width: 720px) {
     padding-top: 15rem;

@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<styled.div
+  data-test="MobileNavComponent"
+>
+  <styled.div
+    sticky={false}
+  >
+    Home
+  </styled.div>
+  <styled.div
+    sticky={false}
+  >
+    Skills
+  </styled.div>
+  <styled.div
+    sticky={false}
+  >
+    Portfolio
+  </styled.div>
+  <styled.div
+    sticky={false}
+  >
+    About
+  </styled.div>
+  <styled.div
+    sticky={false}
+  >
+    Contact
+  </styled.div>
+</styled.div>
+`;

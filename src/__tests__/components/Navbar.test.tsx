@@ -6,6 +6,8 @@ import { changeTheme } from "../../store/actions/mainActions";
 import { Props } from "../../components/Navbar/types";
 
 const props: Props = {
+  hamburgerOpened: false,
+  toggleHamburger: () => null,
   isDesktop: false,
   stickyNavVisible: false,
   changeTheme
@@ -30,6 +32,23 @@ describe("screen size mobile", () => {
   it("renders Hamburger component", () => {
     const Hamburger = wrapper.find("[data-test='Hamburger']");
     expect(Hamburger.length).toBe(1);
+  });
+
+  it("renders MobileNav component when hamburger opened", () => {
+    const hamburgerOpenProps: Props = {
+      ...props,
+      hamburgerOpened: true
+    };
+
+    wrapper = shallow(<Navbar {...hamburgerOpenProps} />);
+
+    const MobileNav = wrapper.find("[data-test='MobileNav']");
+    expect(MobileNav.length).toBe(1);
+  });
+
+  it("does not render MobileNav component when hamburger closed", () => {
+    const MobileNav = wrapper.find("[data-test='MobileNav']");
+    expect(MobileNav.length).toBe(0);
   });
 });
 
