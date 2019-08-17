@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback, useRef } from "react";
+import React, { useEffect, useCallback } from "react";
 import { connect } from "react-redux";
 import { ThemeProvider } from "styled-components";
 
@@ -15,8 +15,6 @@ const AppContainer: React.FC<Props> = ({
   screenSizeChanged,
   showStickyNav
 }) => {
-  const navbarRef = useRef<HTMLDivElement>(null);
-
   const screenSizeChangedMemoized = useCallback(screenSizeChanged, []);
   const showStickyNavMemoized = useCallback(showStickyNav, []);
 
@@ -29,16 +27,12 @@ const AppContainer: React.FC<Props> = ({
   }, [isDesktop, screenSizeChangedMemoized]);
 
   const onScroll = useCallback(() => {
-    if (
-      !stickyNavVisible &&
-      navbarRef.current &&
-      window.scrollY > navbarRef.current.offsetHeight / 10
-    ) {
+    if (!stickyNavVisible && window.scrollY > 30) {
       showStickyNavMemoized(true);
     } else if (stickyNavVisible && window.scrollY === 0) {
       showStickyNavMemoized(false);
     }
-  }, [navbarRef, stickyNavVisible, showStickyNavMemoized]);
+  }, [stickyNavVisible, showStickyNavMemoized]);
 
   // Determine if screen is desktop size and whether or not to show sticky nav at the firt render
 
@@ -65,7 +59,7 @@ const AppContainer: React.FC<Props> = ({
 
   return (
     <ThemeProvider theme={getTheme(themeIndex)}>
-      <App navbarRef={navbarRef} />
+      <App />
     </ThemeProvider>
   );
 };

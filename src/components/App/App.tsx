@@ -4,7 +4,6 @@ import { BrowserRouter as Router } from "react-router-dom";
 
 import Routes from "../../Routes";
 import Navbar from "../../containers/Navbar";
-import { Props } from "./types";
 import { Theme } from "../../utils/getTheme/types";
 
 const GlobalStyle = createGlobalStyle<{ theme: Theme }>`
@@ -48,12 +47,12 @@ const StyledApp = styled.div`
   }
 `;
 
-const App: React.FC<Props> = ({ navbarRef }) => (
+const App: React.FC = () => (
   <>
     <GlobalStyle data-test="AppComponent" />
     <Router>
       <StyledApp>
-        <Navbar navbarRef={navbarRef} />
+        <Navbar />
         <Routes />
       </StyledApp>
     </Router>

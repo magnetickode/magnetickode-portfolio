@@ -7,6 +7,7 @@ import { Props } from "../../components/Navbar/types";
 
 const props: Props = {
   hamburgerOpened: false,
+  mobileNavVisible: false,
   toggleHamburger: () => null,
   isDesktop: false,
   stickyNavVisible: false,
@@ -37,7 +38,7 @@ describe("screen size mobile", () => {
   it("renders MobileNav component when hamburger opened", () => {
     const hamburgerOpenProps: Props = {
       ...props,
-      hamburgerOpened: true
+      mobileNavVisible: true
     };
 
     wrapper = shallow(<Navbar {...hamburgerOpenProps} />);

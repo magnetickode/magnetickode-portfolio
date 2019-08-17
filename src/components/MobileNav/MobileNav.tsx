@@ -1,7 +1,7 @@
 import React from "react";
 import styled, { keyframes } from "styled-components";
 
-import { Props, NavItemProps } from "./types";
+import { Props, StyledMobileNavProps, NavItemProps } from "./types";
 
 const enlargeAnim = keyframes`
   from {
@@ -13,17 +13,19 @@ const enlargeAnim = keyframes`
   }
 `;
 
-const StyledMobileNav = styled.div`
+const StyledMobileNav = styled.div<StyledMobileNavProps>`
   position: absolute;
   top: 6.9rem;
   right: 2.8rem;
   width: 16rem;
+  height: ${({ collapse }) => (collapse ? 0 : "22.5rem")};
   background: ${({ theme }) => theme.textColor};
   border-radius: 0.5rem;
   box-shadow: 0 0 2rem rgba(0, 0, 0, 0.5);
   user-select: none;
   overflow: hidden;
   animation: ${enlargeAnim} 0.5s;
+  transition: height 0.5s;
 `;
 
 const NavItem = styled.div<NavItemProps>`
@@ -45,8 +47,8 @@ const NavItem = styled.div<NavItemProps>`
   }
 `;
 
-const MobileNav: React.FC<Props> = ({ sticky }) => (
-  <StyledMobileNav data-test="MobileNavComponent">
+const MobileNav: React.FC<Props> = ({ sticky, collapse }) => (
+  <StyledMobileNav data-test="MobileNavComponent" collapse={collapse}>
     <NavItem sticky={sticky}>Home</NavItem>
     <NavItem sticky={sticky}>Skills</NavItem>
     <NavItem sticky={sticky}>Portfolio</NavItem>

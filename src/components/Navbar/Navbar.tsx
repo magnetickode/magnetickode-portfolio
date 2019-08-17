@@ -54,13 +54,13 @@ const Logo = styled.div<LogoProps>`
 
 const Navbar: React.FC<Props> = ({
   hamburgerOpened,
+  mobileNavVisible,
   toggleHamburger,
-  navbarRef,
   isDesktop,
   stickyNavVisible,
   changeTheme
 }) => (
-  <StyledNavbar data-test="NavbarComponent" ref={navbarRef} sticky={stickyNavVisible}>
+  <StyledNavbar data-test="NavbarComponent" sticky={stickyNavVisible}>
     <div>
       <Logo isDesktop={isDesktop} sticky={stickyNavVisible} onClick={changeTheme}>
         mk
@@ -75,8 +75,12 @@ const Navbar: React.FC<Props> = ({
             sticky={stickyNavVisible}
             toggleHamburger={toggleHamburger}
           />
-          {hamburgerOpened && (
-            <MobileNav data-test="MobileNav" sticky={stickyNavVisible} />
+          {mobileNavVisible && (
+            <MobileNav
+              data-test="MobileNav"
+              sticky={stickyNavVisible}
+              collapse={!hamburgerOpened && mobileNavVisible}
+            />
           )}
         </>
       )}

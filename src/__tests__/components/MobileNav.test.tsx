@@ -7,7 +7,8 @@ import { Props } from "../../components/MobileNav/types";
 let wrapper: ShallowWrapper;
 
 const props: Props = {
-  sticky: false
+  sticky: false,
+  collapse: false
 };
 
 beforeEach(() => {

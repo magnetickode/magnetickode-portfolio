@@ -2,6 +2,7 @@
 
 exports[`matches snapshot 1`] = `
 <styled.div
+  collapse={false}
   data-test="MobileNavComponent"
 >
   <styled.div

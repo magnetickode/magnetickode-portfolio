@@ -4,8 +4,8 @@ import { ChangeThemeGen } from "../../store/actions/types";
 
 export interface Props {
   hamburgerOpened: boolean;
+  mobileNavVisible: boolean;
   toggleHamburger: () => void;
-  navbarRef?: MutableRefObject<HTMLDivElement | null>;
   isDesktop: boolean;
   stickyNavVisible: boolean;
   changeTheme: ChangeThemeGen;
