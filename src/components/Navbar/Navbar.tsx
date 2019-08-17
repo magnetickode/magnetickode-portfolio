@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 import Hamburger from "../Hamburger";
 import MobileNav from "../MobileNav";
@@ -36,7 +36,26 @@ const StyledNavbar = styled.div<StyledNavbarProps>`
   `}
 `;
 
+const showTooltip = keyframes`
+  0% {
+    opacity: 0;
+  }
+
+  20% {
+    opacity: 1;
+  }
+
+  80% {
+    opacity: 1
+  }
+
+  100% {
+    visibility: hidden;
+  }
+`;
+
 const Logo = styled.div<LogoProps>`
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -50,6 +69,33 @@ const Logo = styled.div<LogoProps>`
   font-size: ${({ isDesktop }) => (isDesktop ? "3.2rem" : "2.6rem")};
   user-select: none;
   cursor: pointer;
+
+  ::after {
+    content: "Click here to change theme";
+    position: absolute;
+    bottom: -3rem;
+    left: 3rem;
+    width: 20rem;
+    height: 3rem;
+    border-radius: 2rem;
+    box-shadow: 0 0 2rem rgba(0, 0, 0, 0.5);
+    font-family: "Lato", sans-serif;
+    font-size: 1.3rem;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: ${({ sticky, theme }) => (sticky ? theme.primaryColor : theme.textColor)};
+    color: ${({ sticky, theme }) => (sticky ? theme.textColor : theme.primaryColor)};
+    opacity: 0;
+    animation: ${showTooltip} 3.5s;
+    animation-delay: 2s;
+    animation-fill-mode: forwards;
+
+    @media (min-width: 720px) {
+      left: 5rem;
+    }
+  }
 `;
 
 const Navbar: React.FC<Props> = ({

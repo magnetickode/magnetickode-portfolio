@@ -38,7 +38,7 @@ const NavItem = styled.div<NavItemProps>`
   font-weight: bold;
   background: ${({ sticky, theme }) => (sticky ? theme.primaryColor : theme.textColor)};
   color: ${({ sticky, theme }) => (sticky ? theme.textColor : theme.primaryColor)};
-  transition: all 0.35s;
+  transition: all 0.3s;
   cursor: pointer;
 
   :hover {
