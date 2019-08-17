@@ -5,6 +5,7 @@ exports[`matches snapshot 1`] = `
   data-test="HamburgerComponent"
   onClick={[Function]}
   opened={false}
+  sticky={false}
 >
   <div />
 </styled.div>

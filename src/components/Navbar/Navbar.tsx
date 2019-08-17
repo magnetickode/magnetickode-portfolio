@@ -9,7 +9,7 @@ const StyledNavbar = styled.div<StyledNavbarProps>`
   top: 0;
   left: 0;
   width: 100%;
-  transition: background-color 0.6s ease-in-out;
+  transition: all 0.8s ease-in-out;
 
   & > div {
     width: 110rem;

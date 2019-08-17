@@ -8,6 +8,7 @@ let wrapper: ShallowWrapper;
 
 const props: Props = {
   opened: false,
+  sticky: false,
   toggleHamburger: () => null
 };
 
