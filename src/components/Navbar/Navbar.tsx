@@ -62,7 +62,7 @@ const Navbar: React.FC<Props> = ({
   const toggleHamburger = () => setHamburger(prevState => !prevState);
 
   return (
-    <StyledNavbar ref={navbarRef} sticky={stickyNavVisible}>
+    <StyledNavbar data-test="NavbarComponent" ref={navbarRef} sticky={stickyNavVisible}>
       <div>
         <Logo isDesktop={isDesktop} sticky={stickyNavVisible} onClick={changeTheme}>
           mk
@@ -72,6 +72,7 @@ const Navbar: React.FC<Props> = ({
         ) : (
           <>
             <Hamburger
+              data-test="Hamburger"
               opened={hamburgerOpened}
               sticky={stickyNavVisible}
               toggleHamburger={toggleHamburger}

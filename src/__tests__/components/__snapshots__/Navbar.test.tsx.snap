@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`screen size mobile matches snapshot 1`] = `
+<styled.div
+  data-test="NavbarComponent"
+  sticky={false}
+>
+  <div>
+    <styled.div
+      isDesktop={false}
+      onClick={[Function]}
+      sticky={false}
+    >
+      mk
+    </styled.div>
+    <Hamburger
+      data-test="Hamburger"
+      opened={false}
+      sticky={false}
+      toggleHamburger={[Function]}
+    />
+  </div>
+</styled.div>
+`;
