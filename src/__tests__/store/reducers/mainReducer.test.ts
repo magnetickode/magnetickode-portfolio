@@ -53,10 +53,10 @@ describe("handle CHANGE_THEME", () => {
     expect(returnedState).toEqual(expectedState);
   });
 
-  it("resets themeIndex to 0 when themeIndex is 4", () => {
+  it("resets themeIndex to 0 when themeIndex is 5", () => {
     const mockStateBeforeAction: MainReducer = {
       ...initialState,
-      themeIndex: 4
+      themeIndex: 5
     };
 
     const expectedState: MainReducer = {

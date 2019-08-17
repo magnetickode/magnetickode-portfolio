@@ -17,7 +17,7 @@ const mainReducer = (state = initialState, action: MainAction) => {
     case "CHANGE_THEME":
       return {
         ...state,
-        themeIndex: state.themeIndex < 4 ? state.themeIndex + 1 : 0
+        themeIndex: state.themeIndex < 5 ? state.themeIndex + 1 : 0
       };
     case "SHOW_STICKY_NAV":
       return {

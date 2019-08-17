@@ -1,7 +1,8 @@
 import React from "react";
 import styled, { keyframes } from "styled-components";
+import { NavLink } from "react-router-dom";
 
-import { Props, StyledMobileNavProps, NavItemProps } from "./types";
+import { Props, StyledMobileNavProps, StyledNavLinkProps } from "./types";
 
 const enlargeAnim = keyframes`
   from {
@@ -28,7 +29,7 @@ const StyledMobileNav = styled.div<StyledMobileNavProps>`
   transition: height 0.5s;
 `;
 
-const NavItem = styled.div<NavItemProps>`
+const StyledNavLink = styled<StyledNavLinkProps | any>(NavLink)`
   width: 100%;
   height: 4.5rem;
   box-sizing: border-box;
@@ -38,10 +39,12 @@ const NavItem = styled.div<NavItemProps>`
   font-weight: bold;
   background: ${({ sticky, theme }) => (sticky ? theme.primaryColor : theme.textColor)};
   color: ${({ sticky, theme }) => (sticky ? theme.textColor : theme.primaryColor)};
+  text-decoration: none;
   transition: all 0.3s;
   cursor: pointer;
 
-  :hover {
+  :hover,
+  &.active {
     background: ${({ sticky, theme }) => (sticky ? theme.textColor : theme.primaryColor)};
     color: ${({ sticky, theme }) => (sticky ? theme.primaryColor : theme.textColor)};
   }
@@ -49,11 +52,13 @@ const NavItem = styled.div<NavItemProps>`
 
 const MobileNav: React.FC<Props> = ({ sticky, collapse }) => (
   <StyledMobileNav data-test="MobileNavComponent" collapse={collapse}>
-    <NavItem sticky={sticky}>Home</NavItem>
-    <NavItem sticky={sticky}>Skills</NavItem>
-    <NavItem sticky={sticky}>Portfolio</NavItem>
-    <NavItem sticky={sticky}>About</NavItem>
-    <NavItem sticky={sticky}>Contact</NavItem>
+    <StyledNavLink to="/" sticky={sticky}>
+      Home
+    </StyledNavLink>
+    <StyledNavLink sticky={sticky}>Skills</StyledNavLink>
+    <StyledNavLink sticky={sticky}>Portfolio</StyledNavLink>
+    <StyledNavLink sticky={sticky}>About</StyledNavLink>
+    <StyledNavLink sticky={sticky}>Contact</StyledNavLink>
   </StyledMobileNav>
 );
 

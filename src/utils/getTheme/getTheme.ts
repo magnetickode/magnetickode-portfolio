@@ -4,6 +4,7 @@ import backgroundImage2 from "../../assets/images/background2.jpg";
 import backgroundImage3 from "../../assets/images/background3.jpg";
 import backgroundImage4 from "../../assets/images/background4.jpg";
 import backgroundImage5 from "../../assets/images/background5.jpg";
+import backgroundImage6 from "../../assets/images/background6.jpg";
 
 const hexToRgb = (hex: string): string | null => {
   const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
@@ -44,6 +45,13 @@ const reddishTheme: Theme = {
   backgroundImage: `url(${backgroundImage3})`
 };
 
+const greenishTheme: Theme = {
+  ...mainTheme,
+  primaryColor: "#0BA360",
+  secondaryColor: "#3CBA92",
+  backgroundImage: `url(${backgroundImage6})`
+};
+
 const darkishTheme: Theme = {
   ...mainTheme,
   primaryColor: "#28313B",
@@ -68,8 +76,10 @@ const getTheme = (themeIndex: number): Theme => {
     case 2:
       return reddishTheme;
     case 3:
-      return darkishTheme;
+      return greenishTheme;
     case 4:
+      return darkishTheme;
+    case 5:
       return lightishTheme;
     default:
       return mainTheme;

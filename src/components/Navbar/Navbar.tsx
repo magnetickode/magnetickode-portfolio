@@ -3,6 +3,7 @@ import styled, { keyframes } from "styled-components";
 
 import Hamburger from "../Hamburger";
 import MobileNav from "../MobileNav";
+import DesktopNav from "../DesktopNav";
 import { Props, StyledNavbarProps, LogoProps } from "./types";
 
 const StyledNavbar = styled.div<StyledNavbarProps>`
@@ -112,7 +113,7 @@ const Navbar: React.FC<Props> = ({
         mk
       </Logo>
       {isDesktop ? (
-        <p>Desktop</p>
+        <DesktopNav sticky={stickyNavVisible} />
       ) : (
         <>
           <Hamburger
