@@ -18,6 +18,8 @@ const NavbarContainer: React.FC<Props> = props => {
     setHamburger
   ]);
 
+  // Close the hamburger and mobile nav when clicked anywhere
+
   useEffect(() => {
     document.addEventListener("click", onBodyClick);
 

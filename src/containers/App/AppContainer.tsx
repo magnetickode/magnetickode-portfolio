@@ -40,13 +40,14 @@ const AppContainer: React.FC<Props> = ({
     }
   }, [navbarRef, stickyNavVisible, showStickyNavMemoized]);
 
-  // Determine if screen is desktop size at the firt render
+  // Determine if screen is desktop size and whether or not to show sticky nav at the firt render
 
   useEffect(() => {
+    onScroll();
     if (window.innerWidth >= 720) {
       screenSizeChangedMemoized("toDesktop");
     }
-  }, [screenSizeChangedMemoized]);
+  }, [screenSizeChangedMemoized, onScroll]);
 
   // Set up resize listener to determine changes to desktop or mobile screen
 

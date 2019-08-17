@@ -3,7 +3,7 @@ import styled, { keyframes } from "styled-components";
 
 import { Props, NavItemProps } from "./types";
 
-const heightAnim = keyframes`
+const enlargeAnim = keyframes`
   from {
     height: 0;
   } 
@@ -23,7 +23,7 @@ const StyledMobileNav = styled.div`
   box-shadow: 0 0 2rem rgba(0, 0, 0, 0.5);
   user-select: none;
   overflow: hidden;
-  animation: ${heightAnim} 0.5s;
+  animation: ${enlargeAnim} 0.5s;
 `;
 
 const NavItem = styled.div<NavItemProps>`
