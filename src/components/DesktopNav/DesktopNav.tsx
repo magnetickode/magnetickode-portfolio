@@ -14,22 +14,25 @@ const StyledDesktopNav = styled.div<StyledDesktopNavProps>`
   overflow: hidden;
 `;
 
-const StyledNavLink = styled<StyledNavLinkProps | any>(NavLink)`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+const StyledNavLink = styled.div<StyledNavLinkProps>`
   flex-basis: 20%;
   height: 4rem;
-  border: 0;
-  font-weight: bold;
-  color: ${({ sticky, theme }) => (sticky ? theme.primaryColor : theme.textColor)};
-  text-decoration: none;
   transition: all 0.3s;
   cursor: pointer;
 
-  :hover,
-  &.active {
-    outline: 0;
+  & a {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    color: ${({ sticky, theme }) => (sticky ? theme.primaryColor : theme.textColor)};
+    text-decoration: none;
+  }
+
+  & a:hover,
+  & .active {
     background: ${({ sticky, theme }) => (sticky ? theme.primaryColor : theme.textColor)};
     color: ${({ sticky, theme }) => (sticky ? theme.textColor : theme.primaryColor)};
   }
@@ -37,13 +40,23 @@ const StyledNavLink = styled<StyledNavLinkProps | any>(NavLink)`
 
 const DesktopNav: React.FC<Props> = ({ sticky }) => (
   <StyledDesktopNav data-test="DesktopNavComponent" sticky={sticky}>
-    <StyledNavLink to="/" sticky={sticky}>
-      Home
+    <StyledNavLink sticky={sticky}>
+      <NavLink exact to="/">
+        Home
+      </NavLink>
     </StyledNavLink>
-    <StyledNavLink sticky={sticky}>Skills</StyledNavLink>
-    <StyledNavLink sticky={sticky}>Portfolio</StyledNavLink>
-    <StyledNavLink sticky={sticky}>About</StyledNavLink>
-    <StyledNavLink sticky={sticky}>Contact</StyledNavLink>
+    <StyledNavLink sticky={sticky}>
+      <NavLink to="/skills">Skills</NavLink>
+    </StyledNavLink>
+    <StyledNavLink sticky={sticky}>
+      <NavLink to="/portfolio">Portfolio</NavLink>
+    </StyledNavLink>
+    <StyledNavLink sticky={sticky}>
+      <NavLink to="/about">About</NavLink>
+    </StyledNavLink>
+    <StyledNavLink sticky={sticky}>
+      <NavLink to="/contact">Contact</NavLink>
+    </StyledNavLink>
   </StyledDesktopNav>
 );
 

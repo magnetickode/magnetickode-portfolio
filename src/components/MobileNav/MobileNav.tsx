@@ -29,22 +29,24 @@ const StyledMobileNav = styled.div<StyledMobileNavProps>`
   transition: height 0.5s;
 `;
 
-const StyledNavLink = styled<StyledNavLinkProps | any>(NavLink)`
-  width: 100%;
-  height: 4.5rem;
-  box-sizing: border-box;
-  display: flex;
-  align-items: center;
-  padding-left: 2rem;
-  font-weight: bold;
-  background: ${({ sticky, theme }) => (sticky ? theme.primaryColor : theme.textColor)};
-  color: ${({ sticky, theme }) => (sticky ? theme.textColor : theme.primaryColor)};
-  text-decoration: none;
-  transition: all 0.3s;
-  cursor: pointer;
+const StyledNavLink = styled.div<StyledNavLinkProps>`
+  & a {
+    width: 100%;
+    height: 4.5rem;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    padding-left: 2rem;
+    font-weight: bold;
+    background: ${({ sticky, theme }) => (sticky ? theme.primaryColor : theme.textColor)};
+    color: ${({ sticky, theme }) => (sticky ? theme.textColor : theme.primaryColor)};
+    text-decoration: none;
+    transition: all 0.3s;
+    cursor: pointer;
+  }
 
-  :hover,
-  &.active {
+  & a:hover,
+  & .active {
     background: ${({ sticky, theme }) => (sticky ? theme.textColor : theme.primaryColor)};
     color: ${({ sticky, theme }) => (sticky ? theme.primaryColor : theme.textColor)};
   }
@@ -52,13 +54,23 @@ const StyledNavLink = styled<StyledNavLinkProps | any>(NavLink)`
 
 const MobileNav: React.FC<Props> = ({ sticky, collapse }) => (
   <StyledMobileNav data-test="MobileNavComponent" collapse={collapse}>
-    <StyledNavLink to="/" sticky={sticky}>
-      Home
+    <StyledNavLink sticky={sticky}>
+      <NavLink exact to="/">
+        Home
+      </NavLink>
     </StyledNavLink>
-    <StyledNavLink sticky={sticky}>Skills</StyledNavLink>
-    <StyledNavLink sticky={sticky}>Portfolio</StyledNavLink>
-    <StyledNavLink sticky={sticky}>About</StyledNavLink>
-    <StyledNavLink sticky={sticky}>Contact</StyledNavLink>
+    <StyledNavLink sticky={sticky}>
+      <NavLink to="/skills">Skills</NavLink>
+    </StyledNavLink>
+    <StyledNavLink sticky={sticky}>
+      <NavLink to="/portfolio">Portfolio</NavLink>
+    </StyledNavLink>
+    <StyledNavLink sticky={sticky}>
+      <NavLink to="/about">About</NavLink>
+    </StyledNavLink>
+    <StyledNavLink sticky={sticky}>
+      <NavLink to="/contact">Contact</NavLink>
+    </StyledNavLink>
   </StyledMobileNav>
 );
 
