@@ -69,7 +69,12 @@ const Logo = styled.div<LogoProps>`
   font-family: "Pacifico", cursive;
   font-size: ${({ isDesktop }) => (isDesktop ? "3.2rem" : "2.6rem")};
   user-select: none;
+  transition: 0.2s;
   cursor: pointer;
+
+  :hover {
+    transform: scale(1.1);
+  }
 
   ::after {
     content: "Click here to change theme";

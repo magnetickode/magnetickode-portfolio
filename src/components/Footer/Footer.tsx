@@ -33,15 +33,22 @@ const SocialMediaBar = styled.div`
   margin-bottom: 3.5rem;
   background: ${({ theme }) => theme.textColor};
   border-radius: 3rem;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.3);
   display: flex;
   justify-content: space-around;
   align-items: center;
+  transition: 0.2s;
+
+  :hover {
+    transform: scale(1.01);
+    box-shadow: 0 0 2.5rem rgba(0, 0, 0, 0.3);
+  }
 `;
 
 const StyledIcon = styled(FontAwesomeIcon)`
   font-size: 1.8rem;
   color: ${({ theme }) => theme.primaryColor};
-  transition: 0.4s;
+  transition: 0.2s;
   cursor: pointer;
 
   :hover {
