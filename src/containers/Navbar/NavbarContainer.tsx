@@ -15,8 +15,7 @@ const NavbarContainer: React.FC<Props> = props => {
   }, [setHamburger]);
 
   const onBodyClick = useCallback(() => hamburgerOpened && setHamburger(false), [
-    hamburgerOpened,
-    setHamburger
+    hamburgerOpened
   ]);
 
   // Close the hamburger and mobile nav when clicked anywhere
@@ -39,7 +38,7 @@ const NavbarContainer: React.FC<Props> = props => {
     }
 
     return () => clearTimeout(timeout);
-  }, [hamburgerOpened, mobileNavVisible, setMobileNavVisible]);
+  }, [hamburgerOpened, mobileNavVisible]);
 
   return (
     <Navbar

@@ -24,7 +24,7 @@ const FooterContainer: React.FC<Props> = ({ stickyNavVisible }) => {
     }
 
     return () => clearTimeout(timeout);
-  }, [stickyNavVisible, footerState, setFooterState]);
+  }, [stickyNavVisible, footerState]);
   return <Footer footerState={footerState} />;
 };
 

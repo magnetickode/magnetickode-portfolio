@@ -41,14 +41,10 @@ const StyledApp = styled.div`
   display: flex;
   flex-direction: column;
   margin: auto;
-  padding: 8rem 2rem 0 2rem;
+  padding: 0rem 2rem;
   box-sizing: border-box;
   overflow: hidden;
   transition: color 0.2s ease-in-out;
-
-  @media (min-width: 720px) {
-    padding-top: 15rem;
-  }
 `;
 
 const App: React.FC = () => (
