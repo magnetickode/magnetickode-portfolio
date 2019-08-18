@@ -12,6 +12,7 @@ const StyledNavbar = styled.div<StyledNavbarProps>`
   left: 0;
   width: 100%;
   transition: all 0.8s ease-in-out;
+  background: ${({ sticky, theme }) => (sticky ? theme.textColor : "transparent")};
 
   & > div {
     width: 110rem;
@@ -29,12 +30,6 @@ const StyledNavbar = styled.div<StyledNavbarProps>`
       padding: 2rem;
     }
   }
-
-  ${({ sticky, theme }) =>
-    sticky &&
-    `   
-      background: ${theme.textColor};  
-  `}
 `;
 
 const showTooltip = keyframes`

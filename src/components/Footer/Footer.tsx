@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faGithub,
@@ -17,13 +17,55 @@ import {
   instagram as instagramLink,
   medium as mediumLink
 } from "../../data/links.json";
+import { Props, StyledFooterProps } from "./types";
 
-const StyledFooter = styled.div`
-  width: 100%;
-  margin-top: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+const enterAnim = keyframes`
+  from {
+    opacity: 0;
+    transform: translateY(10rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
+
+const StyledFooter = styled.div<StyledFooterProps>`
+  animation: ${({ footerState }) => footerState === "enterAnim" && enterAnim} 0.5s;
+  ${({ footerState }) =>
+    footerState !== "normal" &&
+    `
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+  `}
+
+  ${({ footerState }) =>
+    footerState === "leaveAnim" &&
+    `
+    opacity: 0;
+    transform: translateY(10rem);
+    transition: 0.5s;
+  `}
+
+  & > div {
+    width: 100%;
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+
+    ${({ footerState }) =>
+      footerState !== "normal" &&
+      `
+        width: 110rem;
+        max-width: 100%;
+        margin: auto;
+        padding: 1.5rem 2rem;
+      `}
+  }
 `;
 
 const SocialMediaBar = styled.div`
@@ -74,34 +116,36 @@ const A = styled.a`
   color: ${({ theme }) => theme.textColor};
 `;
 
-const Footer: React.FC = () => (
-  <StyledFooter data-test="FooterComponent">
-    <SocialMediaBar>
-      <A href={githubLink} target="_blank">
-        <StyledIcon icon={faGithub} />
-      </A>
-      <A href={twitterLink} target="_blank">
-        <StyledIcon icon={faTwitter} />
-      </A>
-      <A href={facebookLink} target="_blank">
-        <StyledIcon icon={faFacebook} />
-      </A>
-      <A href={instagramLink} target="_blank">
-        <StyledIcon icon={faInstagram} />
-      </A>
-      <A href={mediumLink} target="_blank">
-        <StyledIcon icon={faMedium} />
-      </A>
-    </SocialMediaBar>
-    <P>
-      This website was built with React, TypeScript and various other technologies. To
-      check out the code, visit this{" "}
-      <A href={siteGitRepoLink} target="_blank">
-        GitHub repo
-      </A>
-      .
-    </P>
-    <P>magnetickode @2019</P>
+const Footer: React.FC<Props> = ({ footerState }) => (
+  <StyledFooter data-test="FooterComponent" footerState={footerState}>
+    <div>
+      <SocialMediaBar>
+        <A href={githubLink} target="_blank">
+          <StyledIcon icon={faGithub} />
+        </A>
+        <A href={twitterLink} target="_blank">
+          <StyledIcon icon={faTwitter} />
+        </A>
+        <A href={facebookLink} target="_blank">
+          <StyledIcon icon={faFacebook} />
+        </A>
+        <A href={instagramLink} target="_blank">
+          <StyledIcon icon={faInstagram} />
+        </A>
+        <A href={mediumLink} target="_blank">
+          <StyledIcon icon={faMedium} />
+        </A>
+      </SocialMediaBar>
+      <P>
+        This website was built with React, TypeScript and various other technologies. To
+        check out the code, visit this{" "}
+        <A href={siteGitRepoLink} target="_blank">
+          GitHub repo
+        </A>
+        .
+      </P>
+      <P>magnetickode @2019</P>
+    </div>
   </StyledFooter>
 );
 

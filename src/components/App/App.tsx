@@ -4,7 +4,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 
 import Routes from "../Routes";
 import Navbar from "../../containers/Navbar";
-import Footer from "../../components/Footer";
+import Footer from "../../containers/Footer";
 import { Theme } from "../../utils/getTheme/types";
 
 const GlobalStyle = createGlobalStyle<{ theme: Theme }>`
