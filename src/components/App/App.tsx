@@ -4,6 +4,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 
 import Routes from "../Routes";
 import Navbar from "../../containers/Navbar";
+import Footer from "../../components/Footer";
 import { Theme } from "../../utils/getTheme/types";
 
 const GlobalStyle = createGlobalStyle<{ theme: Theme }>`
@@ -15,6 +16,7 @@ const GlobalStyle = createGlobalStyle<{ theme: Theme }>`
   body {
       @import url('https://fonts.googleapis.com/css?family=Lato:400,700|Pacifico&display=swap');
       
+      height: 100%;
       margin: 0;
       font-family: "Lato", sans-serif;
       font-size: 1.6rem;
@@ -28,7 +30,6 @@ const GlobalStyle = createGlobalStyle<{ theme: Theme }>`
       background-size: cover;
       background-position: center;
       background-attachment: fixed;
-      height: 100%;
       color: ${({ theme }) => theme.textColor};
   }
 `;
@@ -36,6 +37,9 @@ const GlobalStyle = createGlobalStyle<{ theme: Theme }>`
 const StyledApp = styled.div`
   width: 110rem;
   max-width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
   margin: auto;
   padding: 8rem 2rem 0 2rem;
   box-sizing: border-box;
@@ -54,6 +58,7 @@ const App: React.FC = () => (
       <StyledApp>
         <Navbar />
         <Routes />
+        <Footer />
       </StyledApp>
     </Router>
   </>

@@ -2,8 +2,8 @@
 
 exports[`matches snapshot 1`] = `
 <styled.div
-  collapse={false}
-  data-test="MobileNavComponent"
+  data-test="DesktopNavComponent"
+  sticky={false}
 >
   <styled.div
     sticky={false}
