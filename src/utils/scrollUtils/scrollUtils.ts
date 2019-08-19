@@ -57,4 +57,4 @@ export const getCurrentHashRoute = (): ChangeHashRoutePayload => {
 
 export const checkIfSticky = (): boolean =>
   window.scrollY >=
-  elementVerticalPositionById("skills") + getVerticalScrollPosition() - 150;
+  elementVerticalPositionById("skills") + getVerticalScrollPosition() - 200;

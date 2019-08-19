@@ -1,6 +1,8 @@
 import React from "react";
 import styled, { keyframes } from "styled-components";
 
+import { Props, StyledHomeProps } from "./types";
+
 const spinAnim = keyframes`
   0% {
     transform: rotateY(180deg);
@@ -14,10 +16,13 @@ const spinAnim = keyframes`
   }
 `;
 
-const StyledHome = styled.div`
+const StyledHome = styled.div.attrs(({ opacity }: StyledHomeProps): any => ({
+  opacity
+}))`
   position: fixed;
   z-index: -1;
   display: flex;
+  /* opacity: ${({ opacity }) => opacity}; */
   justify-content: center;
   align-items: center;
   width: 100%;
@@ -67,8 +72,8 @@ const P = styled.p`
   }
 `;
 
-const Home: React.FC = () => (
-  <StyledHome>
+const Home: React.FC<Props> = ({ opacity }) => (
+  <StyledHome opacity={opacity}>
     <P>
       Hi I am Ashfaque Ahsan. I also go by the alias magnetickode. I am a Software
       Engineer with experinece building apps for multiple platforms including Web, Mobile
