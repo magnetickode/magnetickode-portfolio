@@ -7,16 +7,13 @@ exports[`screen size mobile matches snapshot 1`] = `
 >
   <div>
     <styled.div
-      isDesktop={false}
       onClick={[Function]}
-      sticky={false}
     >
       mk
     </styled.div>
     <Hamburger
       data-test="Hamburger"
       opened={false}
-      sticky={false}
       toggleHamburger={[Function]}
     />
   </div>

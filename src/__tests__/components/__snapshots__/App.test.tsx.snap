@@ -5,12 +5,10 @@ exports[`matches snapshot 1`] = `
   <GlobalStyleComponent
     data-test="AppComponent"
   />
-  <BrowserRouter>
-    <styled.div>
-      <Connect(NavbarContainer) />
-      <Routes />
-      <Footer />
-    </styled.div>
-  </BrowserRouter>
+  <styled.div>
+    <Connect(NavbarContainer) />
+    <Routes />
+    <Connect(FooterContainer) />
+  </styled.div>
 </Fragment>
 `;

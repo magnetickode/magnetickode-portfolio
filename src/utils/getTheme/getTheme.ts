@@ -27,7 +27,10 @@ const mainTheme: Theme = {
   secondaryColorRgba(opacity) {
     return `rgba(${hexToRgb(this.secondaryColor)}, ${opacity})`;
   },
-  textColor: "#FFF",
+  textColorRgba(opacity) {
+    return `rgba(${hexToRgb(this.textColor)}, ${opacity})`;
+  },
+  textColor: "#FFFFFF",
   backgroundImage: `url(${backgroundImage})`
 };
 

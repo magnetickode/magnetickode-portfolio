@@ -25,7 +25,34 @@ export interface ShowStickyNavAction {
 
 export type ShowStickyNavGen = (payload: ShowStickyNavPayload) => ShowStickyNavAction;
 
+type ChangeScrolledPayload = boolean;
+
+export interface ChangeScrolledAction {
+  type: "CHANGE_SCROLLED";
+  payload: ChangeScrolledPayload;
+}
+
+export type ChangeScrollGen = (payload: ChangeScrolledPayload) => ChangeScrolledAction;
+
+export type ChangeHashRoutePayload =
+  | "#home"
+  | "#skills"
+  | "#portfolio"
+  | "#about"
+  | "#contact";
+
+export interface ChangeHashRouteAction {
+  type: "CHANGE_HASH_ROUTE";
+  payload: ChangeHashRoutePayload;
+}
+
+export type ChangeHashRouteGen = (
+  payload: ChangeHashRoutePayload
+) => ChangeHashRouteAction;
+
 export type MainAction =
   | ScreenSizeChangedAction
   | ChangeThemeAction
-  | ShowStickyNavAction;
+  | ShowStickyNavAction
+  | ChangeScrolledAction
+  | ChangeHashRouteAction;

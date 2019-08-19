@@ -3,53 +3,47 @@
 exports[`matches snapshot 1`] = `
 <styled.div
   data-test="DesktopNavComponent"
-  sticky={false}
 >
-  <styled.div
-    sticky={false}
-  >
-    <NavLink
+  <styled.div>
+    <NavHashLink
       exact={true}
-      to="/"
+      smooth={true}
+      to="/#home"
     >
       Home
-    </NavLink>
+    </NavHashLink>
   </styled.div>
-  <styled.div
-    sticky={false}
-  >
-    <NavLink
-      to="/skills"
+  <styled.div>
+    <NavHashLink
+      smooth={true}
+      to="/#skills"
     >
       Skills
-    </NavLink>
+    </NavHashLink>
   </styled.div>
-  <styled.div
-    sticky={false}
-  >
-    <NavLink
-      to="/portfolio"
+  <styled.div>
+    <NavHashLink
+      smooth={true}
+      to="/#portfolio"
     >
       Portfolio
-    </NavLink>
+    </NavHashLink>
   </styled.div>
-  <styled.div
-    sticky={false}
-  >
-    <NavLink
-      to="/about"
+  <styled.div>
+    <NavHashLink
+      smooth={true}
+      to="/#about"
     >
       About
-    </NavLink>
+    </NavHashLink>
   </styled.div>
-  <styled.div
-    sticky={false}
-  >
-    <NavLink
-      to="/contact"
+  <styled.div>
+    <NavHashLink
+      smooth={true}
+      to="/#contact"
     >
       Contact
-    </NavLink>
+    </NavHashLink>
   </styled.div>
 </styled.div>
 `;

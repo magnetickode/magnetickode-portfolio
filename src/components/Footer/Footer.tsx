@@ -31,17 +31,17 @@ const enterAnim = keyframes`
 `;
 
 const StyledFooter = styled.div<StyledFooterProps>`
-  animation: ${({ footerState }) => footerState === "enterAnim" && enterAnim} 0.5s;
-  ${({ footerState }) =>
-    footerState !== "normal" &&
-    `
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-  `}
+  position: ${({ footerPosition }) => footerPosition};
+  bottom: 2.5rem;
+  left: 0;
+  width: 100%;
+  height: 17rem;
+  animation: ${({ footerState, footerPosition }) =>
+      footerPosition === "fixed" && footerState === "enterAnim" && enterAnim}
+    0.5s;
 
-  ${({ footerState }) =>
+  ${({ footerState, footerPosition }) =>
+    footerPosition === "fixed" &&
     footerState === "leaveAnim" &&
     `
     opacity: 0;
@@ -50,21 +50,19 @@ const StyledFooter = styled.div<StyledFooterProps>`
   `}
 
   & > div {
-    width: 100%;
+    width: 110rem;
+    max-width: 100%;
+    margin: auto;
     margin-top: auto;
+    padding: 1.5rem 2rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     box-sizing: border-box;
+  }
 
-    ${({ footerState }) =>
-      footerState !== "normal" &&
-      `
-        width: 110rem;
-        max-width: 100%;
-        margin: auto;
-        padding: 1.5rem 2rem;
-      `}
+  @media (min-width: 720px) {
+    bottom: 0;
   }
 `;
 
@@ -116,37 +114,42 @@ const A = styled.a`
   color: ${({ theme }) => theme.textColor};
 `;
 
-const Footer: React.FC<Props> = ({ footerState }) => (
-  <StyledFooter data-test="FooterComponent" footerState={footerState}>
-    <div>
-      <SocialMediaBar>
-        <A href={githubLink} target="_blank">
-          <StyledIcon icon={faGithub} />
-        </A>
-        <A href={twitterLink} target="_blank">
-          <StyledIcon icon={faTwitter} />
-        </A>
-        <A href={facebookLink} target="_blank">
-          <StyledIcon icon={faFacebook} />
-        </A>
-        <A href={instagramLink} target="_blank">
-          <StyledIcon icon={faInstagram} />
-        </A>
-        <A href={mediumLink} target="_blank">
-          <StyledIcon icon={faMedium} />
-        </A>
-      </SocialMediaBar>
-      <P>
-        This website was built with React, TypeScript and various other technologies. To
-        check out the code, visit this{" "}
-        <A href={siteGitRepoLink} target="_blank">
-          GitHub repo
-        </A>
-        .
-      </P>
-      <P>magnetickode @2019</P>
-    </div>
-  </StyledFooter>
-);
+const Footer: React.FC<Props> = ({ footerState, footerPosition }) =>
+  !(footerPosition === "fixed" && footerState === "normal") ? (
+    <StyledFooter
+      data-test="FooterComponent"
+      footerState={footerState}
+      footerPosition={footerPosition}
+    >
+      <div>
+        <SocialMediaBar>
+          <A href={githubLink} target="_blank">
+            <StyledIcon icon={faGithub} />
+          </A>
+          <A href={twitterLink} target="_blank">
+            <StyledIcon icon={faTwitter} />
+          </A>
+          <A href={facebookLink} target="_blank">
+            <StyledIcon icon={faFacebook} />
+          </A>
+          <A href={instagramLink} target="_blank">
+            <StyledIcon icon={faInstagram} />
+          </A>
+          <A href={mediumLink} target="_blank">
+            <StyledIcon icon={faMedium} />
+          </A>
+        </SocialMediaBar>
+        <P>
+          This website was built with React, TypeScript and various other technologies. To
+          check out the code, visit this{" "}
+          <A href={siteGitRepoLink} target="_blank">
+            GitHub repo
+          </A>
+          .
+        </P>
+        <P>magnetickode @2019</P>
+      </div>
+    </StyledFooter>
+  ) : null;
 
 export default Footer;

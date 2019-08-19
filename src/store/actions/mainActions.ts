@@ -1,4 +1,10 @@
-import { ScreenSizeChangedGen, ChangeThemeGen, ShowStickyNavGen } from "./types";
+import {
+  ScreenSizeChangedGen,
+  ChangeThemeGen,
+  ShowStickyNavGen,
+  ChangeScrollGen,
+  ChangeHashRouteGen
+} from "./types";
 
 export const screenSizeChanged: ScreenSizeChangedGen = payload => ({
   type: "SCREEN_SIZE_CHANGED",
@@ -12,5 +18,15 @@ export const changeTheme: ChangeThemeGen = () => ({
 
 export const showStickyNav: ShowStickyNavGen = payload => ({
   type: "SHOW_STICKY_NAV",
+  payload
+});
+
+export const changeScroll: ChangeScrollGen = payload => ({
+  type: "CHANGE_SCROLLED",
+  payload
+});
+
+export const changeHashRoute: ChangeHashRouteGen = payload => ({
+  type: "CHANGE_HASH_ROUTE",
   payload
 });

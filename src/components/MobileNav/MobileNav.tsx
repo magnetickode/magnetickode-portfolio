@@ -1,6 +1,6 @@
 import React from "react";
 import styled, { keyframes } from "styled-components";
-import { NavLink } from "react-router-dom";
+import { NavHashLink as NavLink } from "react-router-hash-link";
 
 import { Props, StyledMobileNavProps, StyledNavLinkProps } from "./types";
 
@@ -38,38 +38,45 @@ const StyledNavLink = styled.div<StyledNavLinkProps>`
     align-items: center;
     padding-left: 2rem;
     font-weight: bold;
-    background: ${({ sticky, theme }) => (sticky ? theme.primaryColor : theme.textColor)};
-    color: ${({ sticky, theme }) => (sticky ? theme.textColor : theme.primaryColor)};
+    background: ${({ active, theme }) => active && theme.primaryColor};
+    color: ${({ active, theme }) => (active ? theme.textColor : theme.primaryColor)};
     text-decoration: none;
     transition: all 0.3s;
     cursor: pointer;
   }
 
-  & a:hover,
-  & .active {
-    background: ${({ sticky, theme }) => (sticky ? theme.textColor : theme.primaryColor)};
-    color: ${({ sticky, theme }) => (sticky ? theme.primaryColor : theme.textColor)};
+  & a:hover {
+    background: ${({ theme }) => theme.primaryColor};
+    color: ${({ theme }) => theme.textColor};
   }
 `;
 
-const MobileNav: React.FC<Props> = ({ sticky, collapse }) => (
+const MobileNav: React.FC<Props> = ({ collapse, hashRoute }) => (
   <StyledMobileNav data-test="MobileNavComponent" collapse={collapse}>
-    <StyledNavLink sticky={sticky}>
-      <NavLink exact to="/">
+    <StyledNavLink active={hashRoute === "#home"}>
+      <NavLink smooth exact to="/#home">
         Home
       </NavLink>
     </StyledNavLink>
-    <StyledNavLink sticky={sticky}>
-      <NavLink to="/skills">Skills</NavLink>
+    <StyledNavLink active={hashRoute === "#skills"}>
+      <NavLink smooth to="/#skills">
+        Skills
+      </NavLink>
     </StyledNavLink>
-    <StyledNavLink sticky={sticky}>
-      <NavLink to="/portfolio">Portfolio</NavLink>
+    <StyledNavLink active={hashRoute === "#portfolio"}>
+      <NavLink smooth to="/#portfolio">
+        Portfolio
+      </NavLink>
     </StyledNavLink>
-    <StyledNavLink sticky={sticky}>
-      <NavLink to="/about">About</NavLink>
+    <StyledNavLink active={hashRoute === "#about"}>
+      <NavLink smooth to="/#about">
+        About
+      </NavLink>
     </StyledNavLink>
-    <StyledNavLink sticky={sticky}>
-      <NavLink to="/contact">Contact</NavLink>
+    <StyledNavLink active={hashRoute === "#contact"}>
+      <NavLink smooth to="/#contact">
+        Contact
+      </NavLink>
     </StyledNavLink>
   </StyledMobileNav>
 );

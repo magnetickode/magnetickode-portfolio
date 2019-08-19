@@ -6,7 +6,12 @@ import { changeTheme } from "../../store/actions/mainActions";
 import { Props } from "./types";
 import { ReduxState } from "../../store/reducers/types";
 
-const NavbarContainer: React.FC<Props> = props => {
+const NavbarContainer: React.FC<Props> = ({
+  isDesktop,
+  stickyNavVisible,
+  hashRoute,
+  changeTheme
+}) => {
   const [hamburgerOpened, setHamburger] = useState(false);
   const [mobileNavVisible, setMobileNavVisible] = useState(false);
 
@@ -45,14 +50,20 @@ const NavbarContainer: React.FC<Props> = props => {
       hamburgerOpened={hamburgerOpened}
       mobileNavVisible={mobileNavVisible}
       toggleHamburger={toggleHamburger}
-      {...props}
+      isDesktop={isDesktop}
+      stickyNavVisible={stickyNavVisible}
+      hashRoute={hashRoute}
+      changeTheme={changeTheme}
     />
   );
 };
 
-const mapStateToProps = ({ main: { isDesktop, stickyNavVisible } }: ReduxState) => ({
+const mapStateToProps = ({
+  main: { isDesktop, stickyNavVisible, hashRoute }
+}: ReduxState) => ({
   isDesktop,
-  stickyNavVisible
+  stickyNavVisible,
+  hashRoute
 });
 
 const mapDispatchToProps = {

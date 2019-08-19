@@ -1,6 +1,5 @@
 import React from "react";
 import styled, { createGlobalStyle } from "styled-components";
-import { BrowserRouter as Router } from "react-router-dom";
 
 import Routes from "../Routes";
 import Navbar from "../../containers/Navbar";
@@ -14,7 +13,7 @@ const GlobalStyle = createGlobalStyle<{ theme: Theme }>`
   }
 
   body {
-      @import url('https://fonts.googleapis.com/css?family=Lato:400,700|Pacifico&display=swap');
+      @import url('https://fonts.googleapis.com/css?family=Lato:400,700|Pacifico|Righteous&display=swap');
       
       height: 100%;
       margin: 0;
@@ -35,14 +34,10 @@ const GlobalStyle = createGlobalStyle<{ theme: Theme }>`
 `;
 
 const StyledApp = styled.div`
-  width: 110rem;
-  max-width: 100%;
-  min-height: 100vh;
+  position: relative;
   display: flex;
   flex-direction: column;
   margin: auto;
-  padding: 0rem 2rem;
-  box-sizing: border-box;
   overflow: hidden;
   transition: color 0.2s ease-in-out;
 `;
@@ -50,13 +45,11 @@ const StyledApp = styled.div`
 const App: React.FC = () => (
   <>
     <GlobalStyle data-test="AppComponent" />
-    <Router>
-      <StyledApp>
-        <Navbar />
-        <Routes />
-        <Footer />
-      </StyledApp>
-    </Router>
+    <StyledApp>
+      <Navbar />
+      <Routes />
+      <Footer />
+    </StyledApp>
   </>
 );
 

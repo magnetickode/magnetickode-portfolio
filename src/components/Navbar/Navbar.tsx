@@ -4,25 +4,37 @@ import styled, { keyframes } from "styled-components";
 import Hamburger from "../Hamburger";
 import MobileNav from "../MobileNav";
 import DesktopNav from "../DesktopNav";
-import { Props, StyledNavbarProps, LogoProps } from "./types";
+import { Props, StyledNavbarProps } from "./types";
 
 const StyledNavbar = styled.div<StyledNavbarProps>`
   position: fixed;
+  z-index: 2;
   top: 0;
   left: 0;
   width: 100%;
-  transition: all 0.8s ease-in-out;
-  background: ${({ sticky, theme }) => (sticky ? theme.textColor : "transparent")};
+  transition: all 0.5s ease-in-out;
 
   & > div {
     width: 110rem;
     max-width: 100%;
-    padding: 1.5rem 2rem;
+    padding: 1rem 2rem;
     margin: auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
     box-sizing: border-box;
+  }
+
+  ::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: ${({ sticky }) => (sticky ? "100%" : 0)};
+    background: ${({ theme }) => theme.primaryColor};
+    transition: height 0.25s linear, background-color 0.6s ease-in-out;
   }
 
   @media (min-width: 720px) {
@@ -50,19 +62,18 @@ const showTooltip = keyframes`
   }
 `;
 
-const Logo = styled.div<LogoProps>`
+const Logo = styled.div`
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: ${({ isDesktop }) => (isDesktop ? "6rem" : "4.5rem")};
-  height: ${({ isDesktop }) => (isDesktop ? "6rem" : "4.5rem")};
-  color: ${({ sticky, theme }) => (sticky ? theme.primaryColor : theme.textColor)};
-  border: 0.4rem solid
-    ${({ sticky, theme }) => (sticky ? theme.primaryColor : theme.textColor)};
-  border-radius: ${({ isDesktop }) => (isDesktop ? "6rem" : "4.5rem")};
+  width: 4.5rem;
+  height: 4.5rem;
+  color: ${({ theme }) => theme.textColor};
+  border: 0.4rem solid ${({ theme }) => theme.textColor};
+  border-radius: 4.5rem;
   font-family: "Pacifico", cursive;
-  font-size: ${({ isDesktop }) => (isDesktop ? "3.2rem" : "2.6rem")};
+  font-size: 2.6rem;
   user-select: none;
   transition: 0.2s;
   cursor: pointer;
@@ -86,8 +97,8 @@ const Logo = styled.div<LogoProps>`
     display: flex;
     justify-content: center;
     align-items: center;
-    background: ${({ sticky, theme }) => (sticky ? theme.primaryColor : theme.textColor)};
-    color: ${({ sticky, theme }) => (sticky ? theme.textColor : theme.primaryColor)};
+    background: ${({ theme }) => theme.textColor};
+    color: ${({ theme }) => theme.primaryColor};
     opacity: 0;
     animation: ${showTooltip} 3.5s;
     animation-delay: 2s;
@@ -105,28 +116,26 @@ const Navbar: React.FC<Props> = ({
   toggleHamburger,
   isDesktop,
   stickyNavVisible,
+  hashRoute,
   changeTheme
 }) => (
   <StyledNavbar data-test="NavbarComponent" sticky={stickyNavVisible}>
     <div>
-      <Logo isDesktop={isDesktop} sticky={stickyNavVisible} onClick={changeTheme}>
-        mk
-      </Logo>
+      <Logo onClick={changeTheme}>mk</Logo>
       {isDesktop ? (
-        <DesktopNav sticky={stickyNavVisible} />
+        <DesktopNav hashRoute={hashRoute} />
       ) : (
         <>
           <Hamburger
             data-test="Hamburger"
             opened={hamburgerOpened}
-            sticky={stickyNavVisible}
             toggleHamburger={toggleHamburger}
           />
           {mobileNavVisible && (
             <MobileNav
               data-test="MobileNav"
-              sticky={stickyNavVisible}
               collapse={!hamburgerOpened && mobileNavVisible}
+              hashRoute={hashRoute}
             />
           )}
         </>

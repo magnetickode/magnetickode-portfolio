@@ -1,6 +1,6 @@
 export interface Props {
-  sticky: boolean;
   collapse: boolean;
+  hashRoute: string;
 }
 
 export interface StyledMobileNavProps {
@@ -8,5 +8,5 @@ export interface StyledMobileNavProps {
 }
 
 export interface StyledNavLinkProps {
-  sticky: boolean;
+  active: boolean;
 }

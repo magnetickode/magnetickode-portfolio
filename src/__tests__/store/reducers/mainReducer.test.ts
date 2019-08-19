@@ -4,13 +4,17 @@ import {
   MainAction,
   ScreenSizeChangedAction,
   ChangeThemeAction,
-  ShowStickyNavAction
+  ShowStickyNavAction,
+  ChangeScrolledAction,
+  ChangeHashRouteAction
 } from "../../../store/actions/types";
 
 const initialState: MainReducer = {
   isDesktop: false,
   themeIndex: 0,
-  stickyNavVisible: false
+  stickyNavVisible: false,
+  scrolled: false,
+  hashRoute: "#home"
 };
 
 it("returns initialState by default", () => {
@@ -81,5 +85,35 @@ it("handles SHOW_STICKY_NAV correctly", () => {
   };
 
   const returnedState = mainReducer(undefined, mockShowStickyNavAction);
+  expect(returnedState).toEqual(expectedState);
+});
+
+it("handles CHANGE_SCROLLED correctly", () => {
+  const mockChangeScrolledAction: ChangeScrolledAction = {
+    type: "CHANGE_SCROLLED",
+    payload: true
+  };
+
+  const expectedState: MainReducer = {
+    ...initialState,
+    scrolled: true
+  };
+
+  const returnedState = mainReducer(undefined, mockChangeScrolledAction);
+  expect(returnedState).toEqual(expectedState);
+});
+
+it("handles CHANGE_HASH_ROUTE correctly", () => {
+  const mockHashRouteAction: ChangeHashRouteAction = {
+    type: "CHANGE_HASH_ROUTE",
+    payload: "#contact"
+  };
+
+  const expectedState: MainReducer = {
+    ...initialState,
+    hashRoute: "#contact"
+  };
+
+  const returnedState = mainReducer(undefined, mockHashRouteAction);
   expect(returnedState).toEqual(expectedState);
 });

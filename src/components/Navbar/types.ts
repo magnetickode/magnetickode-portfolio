@@ -1,5 +1,3 @@
-import { MutableRefObject } from "react";
-
 import { ChangeThemeGen } from "../../store/actions/types";
 
 export interface Props {
@@ -8,14 +6,10 @@ export interface Props {
   toggleHamburger: () => void;
   isDesktop: boolean;
   stickyNavVisible: boolean;
+  hashRoute: string;
   changeTheme: ChangeThemeGen;
 }
 
 export interface StyledNavbarProps {
-  sticky: boolean;
-}
-
-export interface LogoProps {
-  isDesktop: boolean;
   sticky: boolean;
 }

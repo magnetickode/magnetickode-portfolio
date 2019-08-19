@@ -1,14 +1,13 @@
 import React from "react";
 import styled from "styled-components";
-import { NavLink } from "react-router-dom";
+import { NavHashLink as NavLink } from "react-router-hash-link";
 
-import { Props, StyledDesktopNavProps, StyledNavLinkProps } from "./types";
+import { Props, StyledNavLinkProps } from "./types";
 
-const StyledDesktopNav = styled.div<StyledDesktopNavProps>`
+const StyledDesktopNav = styled.div`
   display: flex;
   flex-basis: 70%;
-  border: 0.25rem
-    ${({ sticky, theme }) => (sticky ? theme.primaryColor : theme.textColor)} solid;
+  border: 0.25rem ${({ theme }) => theme.textColor} solid;
   border-radius: 0.6rem;
   user-select: none;
   overflow: hidden;
@@ -27,35 +26,43 @@ const StyledNavLink = styled.div<StyledNavLinkProps>`
     justify-content: center;
     align-items: center;
     font-weight: bold;
-    color: ${({ sticky, theme }) => (sticky ? theme.primaryColor : theme.textColor)};
+    background: ${({ active, theme }) => active && theme.textColor};
+    color: ${({ active, theme }) => (active ? theme.primaryColor : theme.textColor)};
     text-decoration: none;
   }
 
-  & a:hover,
-  & .active {
-    background: ${({ sticky, theme }) => (sticky ? theme.primaryColor : theme.textColor)};
-    color: ${({ sticky, theme }) => (sticky ? theme.textColor : theme.primaryColor)};
+  & a:hover {
+    background: ${({ theme }) => theme.textColor};
+    color: ${({ theme }) => theme.primaryColor};
   }
 `;
 
-const DesktopNav: React.FC<Props> = ({ sticky }) => (
-  <StyledDesktopNav data-test="DesktopNavComponent" sticky={sticky}>
-    <StyledNavLink sticky={sticky}>
-      <NavLink exact to="/">
+const DesktopNav: React.FC<Props> = ({ hashRoute }) => (
+  <StyledDesktopNav data-test="DesktopNavComponent">
+    <StyledNavLink active={hashRoute === "#home"}>
+      <NavLink smooth exact to="/#home">
         Home
       </NavLink>
     </StyledNavLink>
-    <StyledNavLink sticky={sticky}>
-      <NavLink to="/skills">Skills</NavLink>
+    <StyledNavLink active={hashRoute === "#skills"}>
+      <NavLink smooth to="/#skills">
+        Skills
+      </NavLink>
     </StyledNavLink>
-    <StyledNavLink sticky={sticky}>
-      <NavLink to="/portfolio">Portfolio</NavLink>
+    <StyledNavLink active={hashRoute === "#portfolio"}>
+      <NavLink smooth to="/#portfolio">
+        Portfolio
+      </NavLink>
     </StyledNavLink>
-    <StyledNavLink sticky={sticky}>
-      <NavLink to="/about">About</NavLink>
+    <StyledNavLink active={hashRoute === "#about"}>
+      <NavLink smooth to="/#about">
+        About
+      </NavLink>
     </StyledNavLink>
-    <StyledNavLink sticky={sticky}>
-      <NavLink to="/contact">Contact</NavLink>
+    <StyledNavLink active={hashRoute === "#contact"}>
+      <NavLink smooth to="/#contact">
+        Contact
+      </NavLink>
     </StyledNavLink>
   </StyledDesktopNav>
 );

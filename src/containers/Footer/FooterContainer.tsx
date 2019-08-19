@@ -5,7 +5,7 @@ import Footer from "../../components/Footer";
 import { Props } from "./types";
 import { ReduxState } from "../../store/reducers/types";
 
-const FooterContainer: React.FC<Props> = ({ stickyNavVisible }) => {
+const FooterContainer: React.FC<Props> = ({ scrolled }) => {
   const [footerState, setFooterState] = useState("normal");
 
   /* 
@@ -16,20 +16,26 @@ const FooterContainer: React.FC<Props> = ({ stickyNavVisible }) => {
 
   useEffect(() => {
     let timeout: number;
-    if (!stickyNavVisible && footerState !== "enterAnim") {
+    if (!scrolled && footerState !== "enterAnim") {
       setFooterState("enterAnim");
-    } else if (stickyNavVisible && footerState !== "normal") {
+    } else if (scrolled && footerState !== "normal") {
       setFooterState("leaveAnim");
       timeout = setTimeout(() => setFooterState("normal"), 800);
     }
 
     return () => clearTimeout(timeout);
-  }, [stickyNavVisible, footerState]);
-  return <Footer footerState={footerState} />;
+  }, [scrolled, footerState]);
+
+  return (
+    <>
+      <Footer footerState={footerState} footerPosition={"absolute"} />
+      <Footer footerState={footerState} footerPosition={"fixed"} />
+    </>
+  );
 };
 
-const mapStateToProps = ({ main: { stickyNavVisible } }: ReduxState) => ({
-  stickyNavVisible
+const mapStateToProps = ({ main: { scrolled } }: ReduxState) => ({
+  scrolled
 });
 
 export default connect(mapStateToProps)(FooterContainer);

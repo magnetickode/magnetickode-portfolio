@@ -1,11 +1,7 @@
 export interface Props {
-  sticky: boolean;
-}
-
-export interface StyledDesktopNavProps {
-  sticky: boolean;
+  hashRoute: string;
 }
 
 export interface StyledNavLinkProps {
-  sticky: boolean;
+  active: boolean;
 }

@@ -4,7 +4,9 @@ import { MainAction } from "../actions/types";
 const initialState: MainReducer = {
   isDesktop: false,
   themeIndex: 0,
-  stickyNavVisible: false
+  stickyNavVisible: false,
+  scrolled: false,
+  hashRoute: "#home"
 };
 
 const mainReducer = (state = initialState, action: MainAction) => {
@@ -23,6 +25,16 @@ const mainReducer = (state = initialState, action: MainAction) => {
       return {
         ...state,
         stickyNavVisible: action.payload
+      };
+    case "CHANGE_SCROLLED":
+      return {
+        ...state,
+        scrolled: action.payload
+      };
+    case "CHANGE_HASH_ROUTE":
+      return {
+        ...state,
+        hashRoute: action.payload
       };
     default:
       return state;
