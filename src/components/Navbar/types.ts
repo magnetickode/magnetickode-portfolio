@@ -1,5 +1,3 @@
-import { ChangeThemeGen } from "../../store/actions/types";
-
 export interface Props {
   hamburgerOpened: boolean;
   mobileNavVisible: boolean;
@@ -7,7 +5,7 @@ export interface Props {
   isDesktop: boolean;
   stickyNavVisible: boolean;
   hashRoute: string;
-  changeTheme: ChangeThemeGen;
+  changeTheme: () => void | null;
 }
 
 export interface StyledNavbarProps {

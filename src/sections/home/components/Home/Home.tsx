@@ -16,7 +16,7 @@ const spinAnim = keyframes`
   }
 `;
 
-const StyledHome = styled.div.attrs(({ opacity }: StyledHomeProps): any => ({
+const StyledHome = styled.div.attrs(({ opacity }: StyledHomeProps) => ({
   opacity
 }))`
   position: fixed;

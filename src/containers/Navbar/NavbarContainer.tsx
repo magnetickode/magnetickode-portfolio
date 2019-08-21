@@ -1,19 +1,16 @@
-import React, { useState, useEffect, useCallback } from "react";
-import { connect } from "react-redux";
+import React, { useState, useEffect, useCallback, useContext } from "react";
 
 import Navbar from "../../components/Navbar";
-import { changeTheme } from "../../store/actions/mainActions";
-import { Props } from "./types";
-import { ReduxState } from "../../store/reducers/types";
+import AppContext from "../../appContext";
+import { useScroll, useResize } from "../../hooks";
+import { getCurrentHashRoute, checkIfSticky } from "../../utils/scrollUtils";
 
-const NavbarContainer: React.FC<Props> = ({
-  isDesktop,
-  stickyNavVisible,
-  hashRoute,
-  changeTheme
-}) => {
+const NavbarContainer: React.FC = () => {
   const [hamburgerOpened, setHamburger] = useState(false);
   const [mobileNavVisible, setMobileNavVisible] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(false);
+  const [stickyNavVisible, setStickyNavVisible] = useState(false);
+  const [hashRoute, setHashRoute] = useState("#home");
 
   const toggleHamburger = useCallback(() => {
     setHamburger(prevState => !prevState);
@@ -22,6 +19,8 @@ const NavbarContainer: React.FC<Props> = ({
   const onBodyClick = useCallback(() => hamburgerOpened && setHamburger(false), [
     hamburgerOpened
   ]);
+
+  const { changeTheme } = useContext(AppContext);
 
   // Close the hamburger and mobile nav when clicked anywhere
 
@@ -45,6 +44,32 @@ const NavbarContainer: React.FC<Props> = ({
     return () => clearTimeout(timeout);
   }, [hamburgerOpened, mobileNavVisible]);
 
+  useScroll(scrollY => {
+    // Check if sticky nav should be visible
+
+    if (!stickyNavVisible && checkIfSticky(scrollY)) {
+      setStickyNavVisible(true);
+    } else if (stickyNavVisible && !checkIfSticky(scrollY)) {
+      setStickyNavVisible(false);
+    }
+
+    // Determine current hash route
+
+    const currentHashRoute = getCurrentHashRoute(scrollY);
+
+    if (hashRoute !== currentHashRoute) {
+      setHashRoute(currentHashRoute);
+    }
+  });
+
+  useResize(screenWidth => {
+    if (!isDesktop && screenWidth >= 720) {
+      setIsDesktop(true);
+    } else if (isDesktop && screenWidth < 720) {
+      setIsDesktop(false);
+    }
+  });
+
   return (
     <Navbar
       hamburgerOpened={hamburgerOpened}
@@ -58,19 +83,4 @@ const NavbarContainer: React.FC<Props> = ({
   );
 };
 
-const mapStateToProps = ({
-  main: { isDesktop, stickyNavVisible, hashRoute }
-}: ReduxState) => ({
-  isDesktop,
-  stickyNavVisible,
-  hashRoute
-});
-
-const mapDispatchToProps = {
-  changeTheme
-};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(NavbarContainer);
+export default NavbarContainer;

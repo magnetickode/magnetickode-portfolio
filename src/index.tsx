@@ -1,22 +1,19 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { Provider } from "react-redux";
 import { BrowserRouter as Router } from "react-router-dom";
 
 import App from "./containers/App";
-import initStore from "./store/initSore";
+import { initFirebase } from "./config/firebase";
 import * as serviceWorker from "./serviceWorker";
 
-export const store = initStore();
-
 ReactDOM.render(
-  <Provider store={store}>
-    <Router>
-      <App />
-    </Router>
-  </Provider>,
+  <Router>
+    <App />
+  </Router>,
   document.getElementById("root")
 );
+
+initFirebase();
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

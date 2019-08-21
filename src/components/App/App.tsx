@@ -7,14 +7,13 @@ import Footer from "../../containers/Footer";
 import { Theme } from "../../utils/getTheme/types";
 
 const GlobalStyle = createGlobalStyle<{ theme: Theme }>`
+  @import url('https://fonts.googleapis.com/css?family=Lato:400,700|Pacifico|Righteous&display=swap');
   html {
     height: 100%;
     font-size: 62.5%;
   }
 
   body {
-      @import url('https://fonts.googleapis.com/css?family=Lato:400,700|Pacifico|Righteous&display=swap');
-      
       height: 100%;
       margin: 0;
       font-family: "Lato", sans-serif;

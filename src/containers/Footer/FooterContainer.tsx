@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { connect } from "react-redux";
 
 import Footer from "../../components/Footer";
-import { Props } from "./types";
-import { ReduxState } from "../../store/reducers/types";
+import { useScroll } from "../../hooks";
 
-const FooterContainer: React.FC<Props> = ({ scrolled }) => {
+const FooterContainer: React.FC = () => {
+  const [scrolled, setScrolled] = useState(false);
   const [footerState, setFooterState] = useState("normal");
 
   /* 
@@ -26,16 +25,22 @@ const FooterContainer: React.FC<Props> = ({ scrolled }) => {
     return () => clearTimeout(timeout);
   }, [scrolled, footerState]);
 
+  useScroll(scrollY => {
+    // Check if scroll position is 0 to decide the footer animation
+    // console.log(scrollY, scrolled);
+    if (scrollY === 0 && scrolled) {
+      setScrolled(false);
+    } else if (scrollY > 0 && !scrolled) {
+      setScrolled(true);
+    }
+  });
+
   return (
     <>
-      <Footer footerState={footerState} footerPosition={"absolute"} />
+      <Footer footerState={"normal"} footerPosition={"absolute"} />
       <Footer footerState={footerState} footerPosition={"fixed"} />
     </>
   );
 };
 
-const mapStateToProps = ({ main: { scrolled } }: ReduxState) => ({
-  scrolled
-});
-
-export default connect(mapStateToProps)(FooterContainer);
+export default FooterContainer;

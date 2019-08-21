@@ -16,7 +16,6 @@ const StyledDesktopNav = styled.div`
 const StyledNavLink = styled.div<StyledNavLinkProps>`
   flex-basis: 20%;
   height: 4rem;
-  transition: all 0.3s;
   cursor: pointer;
 
   & a {
@@ -29,6 +28,7 @@ const StyledNavLink = styled.div<StyledNavLinkProps>`
     background: ${({ active, theme }) => active && theme.textColor};
     color: ${({ active, theme }) => (active ? theme.primaryColor : theme.textColor)};
     text-decoration: none;
+    transition: all 0.3s;
   }
 
   & a:hover {

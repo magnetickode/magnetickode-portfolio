@@ -4,7 +4,9 @@ exports[`matches snapshot 1`] = `
 <styled.div
   data-test="DesktopNavComponent"
 >
-  <styled.div>
+  <styled.div
+    active={false}
+  >
     <NavHashLink
       exact={true}
       smooth={true}
@@ -13,7 +15,9 @@ exports[`matches snapshot 1`] = `
       Home
     </NavHashLink>
   </styled.div>
-  <styled.div>
+  <styled.div
+    active={false}
+  >
     <NavHashLink
       smooth={true}
       to="/#skills"
@@ -21,7 +25,9 @@ exports[`matches snapshot 1`] = `
       Skills
     </NavHashLink>
   </styled.div>
-  <styled.div>
+  <styled.div
+    active={false}
+  >
     <NavHashLink
       smooth={true}
       to="/#portfolio"
@@ -29,7 +35,9 @@ exports[`matches snapshot 1`] = `
       Portfolio
     </NavHashLink>
   </styled.div>
-  <styled.div>
+  <styled.div
+    active={false}
+  >
     <NavHashLink
       smooth={true}
       to="/#about"
@@ -37,7 +45,9 @@ exports[`matches snapshot 1`] = `
       About
     </NavHashLink>
   </styled.div>
-  <styled.div>
+  <styled.div
+    active={false}
+  >
     <NavHashLink
       smooth={true}
       to="/#contact"

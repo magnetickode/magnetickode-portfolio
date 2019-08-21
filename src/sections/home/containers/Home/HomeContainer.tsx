@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import { throttle } from "lodash";
 
 import Home from "../../components/Home";
@@ -18,13 +18,13 @@ const HomeContainer: React.FC = () => {
     }
   }, []);
 
-  const throttledOnScroll = throttle(onScroll, 500);
+  const throttledOnScroll = useRef(throttle(onScroll, 200));
 
-  useEffect(() => {
-    window.addEventListener("scroll", throttledOnScroll);
+  // useEffect(() => {
+  //   window.addEventListener("scroll", throttledOnScroll.current);
 
-    return () => window.removeEventListener("scroll", throttledOnScroll);
-  }, [throttledOnScroll]);
+  //   return () => window.removeEventListener("scroll", throttledOnScroll.current);
+  // }, []);
   return <Home opacity={opacity} />;
 };
 
