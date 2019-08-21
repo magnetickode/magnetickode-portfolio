@@ -22,7 +22,7 @@ const StyledHome = styled.div.attrs(({ opacity }: StyledHomeProps) => ({
   position: fixed;
   z-index: -1;
   display: flex;
-  /* opacity: ${({ opacity }) => opacity}; */
+  opacity: ${({ opacity }) => opacity};
   justify-content: center;
   align-items: center;
   width: 100%;

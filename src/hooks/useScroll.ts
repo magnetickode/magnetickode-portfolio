@@ -20,7 +20,9 @@ const useScroll = (handler: (scrollY: number) => void, throttleTo: number = 300)
     return () => window.removeEventListener("scroll", currentThrottledOnScroll);
   }, []);
 
-  handler(scrollY);
+  useEffect(() => {
+    handler(scrollY);
+  }, [scrollY, handler]);
 };
 
 export default useScroll;

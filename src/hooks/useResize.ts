@@ -16,7 +16,9 @@ const useResize = (handler: (screenWidth: number) => void, throttleBy: number = 
     return () => window.removeEventListener("resize", currentThrottledOnResize);
   }, []);
 
-  handler(screenWidth);
+  useEffect(() => {
+    handler(screenWidth);
+  }, [screenWidth, handler]);
 };
 
 export default useResize;
