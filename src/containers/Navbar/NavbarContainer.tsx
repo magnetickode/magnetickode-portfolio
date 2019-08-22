@@ -49,6 +49,16 @@ const NavbarContainer: React.FC = () => {
 
   useScroll(onScroll);
 
+  // Check if screen is desktop size on first render
+
+  useEffect(() => {
+    if (window.innerWidth >= 720) {
+      setIsDesktop(true);
+    }
+  }, []);
+
+  // Check if screen is desktop size on resize
+
   const onResize = useCallback(() => {
     if (!isDesktop && window.innerWidth >= 720) {
       setIsDesktop(true);
