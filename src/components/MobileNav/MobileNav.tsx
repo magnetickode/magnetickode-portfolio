@@ -1,31 +1,20 @@
 import React from "react";
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 import { NavHashLink as NavLink } from "react-router-hash-link";
 
 import { Props, StyledMobileNavProps, StyledNavLinkProps } from "./types";
-
-const enlargeAnim = keyframes`
-  from {
-    height: 0;
-  } 
-
-  to {
-    height: 22.5rem;
-  }
-`;
 
 const StyledMobileNav = styled.div<StyledMobileNavProps>`
   position: absolute;
   top: 6.9rem;
   right: 2.8rem;
   width: 16rem;
-  height: ${({ collapse }) => (collapse ? 0 : "22.5rem")};
+  height: ${({ hamburgerOpened }) => (hamburgerOpened ? "22.5rem" : 0)};
   background: ${({ theme }) => theme.textColor};
   border-radius: 0.5rem;
   box-shadow: 0 0 2rem rgba(0, 0, 0, 0.5);
   user-select: none;
   overflow: hidden;
-  animation: ${enlargeAnim} 0.5s;
   transition: height 0.5s;
 `;
 
@@ -51,8 +40,8 @@ const StyledNavLink = styled.div<StyledNavLinkProps>`
   }
 `;
 
-const MobileNav: React.FC<Props> = ({ collapse, hashRoute }) => (
-  <StyledMobileNav data-test="MobileNavComponent" collapse={collapse}>
+const MobileNav: React.FC<Props> = ({ hamburgerOpened, hashRoute }) => (
+  <StyledMobileNav data-test="MobileNavComponent" hamburgerOpened={hamburgerOpened}>
     <StyledNavLink active={hashRoute === "#home"}>
       <NavLink smooth exact to="/#home">
         Home

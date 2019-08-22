@@ -112,7 +112,6 @@ const Logo = styled.div`
 
 const Navbar: React.FC<Props> = ({
   hamburgerOpened,
-  mobileNavVisible,
   toggleHamburger,
   isDesktop,
   stickyNavVisible,
@@ -131,13 +130,11 @@ const Navbar: React.FC<Props> = ({
             opened={hamburgerOpened}
             toggleHamburger={toggleHamburger}
           />
-          {mobileNavVisible && (
-            <MobileNav
-              data-test="MobileNav"
-              collapse={!hamburgerOpened && mobileNavVisible}
-              hashRoute={hashRoute}
-            />
-          )}
+          <MobileNav
+            data-test="MobileNav"
+            hamburgerOpened={hamburgerOpened}
+            hashRoute={hashRoute}
+          />
         </>
       )}
     </div>

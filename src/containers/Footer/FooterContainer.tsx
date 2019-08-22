@@ -25,18 +25,15 @@ const FooterContainer: React.FC = () => {
     return () => clearTimeout(timeout);
   }, [scrolled, footerState]);
 
-  const onScroll = useCallback(
-    scrollY => {
-      // Check if scroll position is 0 to decide the footer animation
-      // console.log(scrollY, scrolled);
-      if (scrollY === 0 && scrolled) {
-        setScrolled(false);
-      } else if (scrollY > 0 && !scrolled) {
-        setScrolled(true);
-      }
-    },
-    [scrolled]
-  );
+  const onScroll = useCallback(() => {
+    // Check if scroll position is 0 to decide the footer animation
+
+    if (window.scrollY === 0 && scrolled) {
+      setScrolled(false);
+    } else if (window.scrollY > 0 && !scrolled) {
+      setScrolled(true);
+    }
+  }, [scrolled]);
 
   useScroll(onScroll);
 

@@ -1,10 +1,10 @@
 export interface Props {
-  collapse: boolean;
+  hamburgerOpened: boolean;
   hashRoute: string;
 }
 
 export interface StyledMobileNavProps {
-  collapse: boolean;
+  hamburgerOpened: boolean;
 }
 
 export interface StyledNavLinkProps {

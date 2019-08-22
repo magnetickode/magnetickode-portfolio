@@ -1,16 +1,12 @@
-import { useState, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { throttle } from "lodash";
 
-const useScroll = (handler: (scrollY: number) => void, throttleTo: number = 300) => {
-  const [scrollY, setScrollY] = useState();
+const useScroll = (handler: () => void, throttleTo: number = 300) => {
+  const savedHandler = useRef<any>();
 
-  useEffect(() => {
-    setScrollY(window.scrollY);
-  }, []);
+  useEffect(() => (savedHandler.current = handler), [handler]);
 
-  const throttledOnScroll = useRef(
-    throttle(() => setScrollY(window.scrollY), throttleTo)
-  );
+  const throttledOnScroll = useRef(throttle(() => savedHandler.current(), throttleTo));
 
   useEffect(() => {
     const currentThrottledOnScroll = throttledOnScroll.current;
@@ -19,10 +15,6 @@ const useScroll = (handler: (scrollY: number) => void, throttleTo: number = 300)
 
     return () => window.removeEventListener("scroll", currentThrottledOnScroll);
   }, []);
-
-  useEffect(() => {
-    handler(scrollY);
-  }, [scrollY, handler]);
 };
 
 export default useScroll;

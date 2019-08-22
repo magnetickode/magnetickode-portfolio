@@ -7,7 +7,6 @@ import { getCurrentHashRoute, checkIfSticky } from "../../utils/scrollUtils";
 
 const NavbarContainer: React.FC = () => {
   const [hamburgerOpened, setHamburger] = useState(false);
-  const [mobileNavVisible, setMobileNavVisible] = useState(false);
   const [isDesktop, setIsDesktop] = useState(false);
   const [stickyNavVisible, setStickyNavVisible] = useState(false);
   const [hashRoute, setHashRoute] = useState("#home");
@@ -30,60 +29,39 @@ const NavbarContainer: React.FC = () => {
     return () => document.removeEventListener("click", onBodyClick);
   }, [onBodyClick]);
 
-  // Wait for mobile nav collapse animation to complete before unmounting the component
+  const onScroll = useCallback(() => {
+    // Check if sticky nav should be visible
 
-  useEffect(() => {
-    let timeout: number;
-
-    if (!hamburgerOpened && mobileNavVisible) {
-      timeout = setTimeout(() => setMobileNavVisible(false), 1000);
-    } else if (hamburgerOpened && !mobileNavVisible) {
-      setMobileNavVisible(true);
+    if (!stickyNavVisible && checkIfSticky(window.scrollY)) {
+      setStickyNavVisible(true);
+    } else if (stickyNavVisible && !checkIfSticky(window.scrollY)) {
+      setStickyNavVisible(false);
     }
 
-    return () => clearTimeout(timeout);
-  }, [hamburgerOpened, mobileNavVisible]);
+    // Determine current hash route
 
-  const onScroll = useCallback(
-    scrollY => {
-      // Check if sticky nav should be visible
+    const currentHashRoute = getCurrentHashRoute(window.scrollY);
 
-      if (!stickyNavVisible && checkIfSticky(scrollY)) {
-        setStickyNavVisible(true);
-      } else if (stickyNavVisible && !checkIfSticky(scrollY)) {
-        setStickyNavVisible(false);
-      }
-
-      // Determine current hash route
-
-      const currentHashRoute = getCurrentHashRoute(scrollY);
-
-      if (hashRoute !== currentHashRoute) {
-        setHashRoute(currentHashRoute);
-      }
-    },
-    [stickyNavVisible, hashRoute]
-  );
+    if (hashRoute !== currentHashRoute) {
+      setHashRoute(currentHashRoute);
+    }
+  }, [stickyNavVisible, hashRoute]);
 
   useScroll(onScroll);
 
-  const onResize = useCallback(
-    screenWidth => {
-      if (!isDesktop && screenWidth >= 720) {
-        setIsDesktop(true);
-      } else if (isDesktop && screenWidth < 720) {
-        setIsDesktop(false);
-      }
-    },
-    [isDesktop]
-  );
+  const onResize = useCallback(() => {
+    if (!isDesktop && window.innerWidth >= 720) {
+      setIsDesktop(true);
+    } else if (isDesktop && window.innerWidth < 720) {
+      setIsDesktop(false);
+    }
+  }, [isDesktop]);
 
   useResize(onResize);
 
   return (
     <Navbar
       hamburgerOpened={hamburgerOpened}
-      mobileNavVisible={mobileNavVisible}
       toggleHamburger={toggleHamburger}
       isDesktop={isDesktop}
       stickyNavVisible={stickyNavVisible}
