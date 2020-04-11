@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState } from "react";
 
 import Home from "../../components/Home";
 import { useScroll } from "../../../../hooks";
@@ -6,7 +6,7 @@ import { useScroll } from "../../../../hooks";
 const HomeContainer: React.FC = () => {
   const [opacity, setOpacity] = useState(1);
 
-  const onScroll = useCallback(() => {
+  useScroll(() => {
     if (window.innerHeight > window.scrollY) {
       if (window.scrollY === 0) {
         setOpacity(1);
@@ -14,9 +14,7 @@ const HomeContainer: React.FC = () => {
         setOpacity(1 - window.scrollY / window.innerHeight - 0.1);
       }
     }
-  }, []);
-
-  // useScroll(onScroll, 200);
+  }, 100);
   return <Home opacity={opacity} />;
 };
 

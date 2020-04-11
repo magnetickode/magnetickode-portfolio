@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 
 import Footer from "../../components/Footer";
 import { useScroll } from "../../hooks";
@@ -25,7 +25,7 @@ const FooterContainer: React.FC = () => {
     return () => clearTimeout(timeout);
   }, [scrolled, footerState]);
 
-  const onScroll = useCallback(() => {
+  useScroll(() => {
     // Check if scroll position is 0 to decide the footer animation
 
     if (window.scrollY === 0 && scrolled) {
@@ -33,9 +33,7 @@ const FooterContainer: React.FC = () => {
     } else if (window.scrollY > 0 && !scrolled) {
       setScrolled(true);
     }
-  }, [scrolled]);
-
-  useScroll(onScroll);
+  });
 
   return (
     <>

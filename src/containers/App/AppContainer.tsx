@@ -7,7 +7,7 @@ import { useStorage } from "../../hooks";
 import getTheme from "../../utils/getTheme";
 
 const AppContainer = () => {
-  const [themeIndex, setThemeIndex] = useState(0);
+  const [themeIndex, setThemeIndex] = useState(1);
 
   useStorage(themeIndex, setThemeIndex, "local", "theme");
 

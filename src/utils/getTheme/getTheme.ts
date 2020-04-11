@@ -55,19 +55,18 @@ const greenishTheme: Theme = {
   backgroundImage: `url(${backgroundImage6})`
 };
 
+const pinkishTheme: Theme = {
+  ...mainTheme,
+  primaryColor: "#FA71CD",
+  secondaryColor: "#FF758C",
+  backgroundImage: `url(${backgroundImage5})`
+};
+
 const darkishTheme: Theme = {
   ...mainTheme,
   primaryColor: "#28313B",
   secondaryColor: "#485461",
   backgroundImage: `url(${backgroundImage4})`
-};
-
-const lightishTheme: Theme = {
-  ...mainTheme,
-  primaryColor: "#CFD9DF",
-  secondaryColor: "#E2EBF0",
-  textColor: "#000000",
-  backgroundImage: `url(${backgroundImage5})`
 };
 
 const getTheme = (themeIndex: number): Theme => {
@@ -81,9 +80,9 @@ const getTheme = (themeIndex: number): Theme => {
     case 3:
       return greenishTheme;
     case 4:
-      return darkishTheme;
+      return pinkishTheme;
     case 5:
-      return lightishTheme;
+      return darkishTheme;
     default:
       return mainTheme;
   }
