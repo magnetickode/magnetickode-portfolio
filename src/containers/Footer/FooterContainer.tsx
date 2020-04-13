@@ -27,7 +27,7 @@ const FooterContainer: React.FC = () => {
 
   useScroll(() => {
     // Check if scroll position is 0 to decide the footer animation
-
+    console.log(window.scrollY);
     if (window.scrollY === 0 && scrolled) {
       setScrolled(false);
     } else if (window.scrollY > 0 && !scrolled) {

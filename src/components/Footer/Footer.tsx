@@ -6,7 +6,7 @@ import {
   faMedium,
   faTwitter,
   faFacebook,
-  faInstagram
+  faQuora
 } from "@fortawesome/free-brands-svg-icons";
 
 import {
@@ -14,7 +14,7 @@ import {
   github as githubLink,
   twitter as twitterLink,
   facebook as facebookLink,
-  instagram as instagramLink,
+  quora as quoraLink,
   medium as mediumLink
 } from "../../data/links.json";
 import { Props, StyledFooterProps } from "./types";
@@ -132,8 +132,8 @@ const Footer: React.FC<Props> = ({ footerState, footerPosition }) =>
           <A href={facebookLink} target="_blank">
             <StyledIcon icon={faFacebook} />
           </A>
-          <A href={instagramLink} target="_blank">
-            <StyledIcon icon={faInstagram} />
+          <A href={quoraLink} target="_blank">
+            <StyledIcon icon={faQuora} />
           </A>
           <A href={mediumLink} target="_blank">
             <StyledIcon icon={faMedium} />
