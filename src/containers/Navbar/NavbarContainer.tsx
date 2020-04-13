@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback, useContext } from "react";
+import { Helmet } from "react-helmet";
 
 import Navbar from "../../components/Navbar";
 import AppContext from "../../appContext";
@@ -70,14 +71,21 @@ const NavbarContainer: React.FC = () => {
   useResize(onResize);
 
   return (
-    <Navbar
-      hamburgerOpened={hamburgerOpened}
-      toggleHamburger={toggleHamburger}
-      isDesktop={isDesktop}
-      stickyNavVisible={stickyNavVisible}
-      hashRoute={hashRoute}
-      changeTheme={changeTheme}
-    />
+    <>
+      <Helmet>
+        <title>
+          {hashRoute.slice(1, 2).toUpperCase() + hashRoute.slice(2)} - magnetickode
+        </title>
+      </Helmet>
+      <Navbar
+        hamburgerOpened={hamburgerOpened}
+        toggleHamburger={toggleHamburger}
+        isDesktop={isDesktop}
+        stickyNavVisible={stickyNavVisible}
+        hashRoute={hashRoute}
+        changeTheme={changeTheme}
+      />
+    </>
   );
 };
 

@@ -24,7 +24,7 @@ const AppContainer = () => {
     }
   };
   return (
-    <AppContext.Provider value={contextValue}>
+    <>
       <Helmet>
         <link rel="shortcut icon" href={theme.ico.favicon} />
         <link rel="icon" href={theme.ico.size16} sizes="16x16" />
@@ -35,10 +35,12 @@ const AppContainer = () => {
         <link rel="manifest" href={theme.ico.manifest} />
         <meta name="theme-color" content={theme.primaryColor} />
       </Helmet>
-      <ThemeProvider theme={theme}>
-        <App />
-      </ThemeProvider>
-    </AppContext.Provider>
+      <AppContext.Provider value={contextValue}>
+        <ThemeProvider theme={theme}>
+          <App />
+        </ThemeProvider>
+      </AppContext.Provider>
+    </>
   );
 };
 
