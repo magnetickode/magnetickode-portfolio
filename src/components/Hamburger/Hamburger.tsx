@@ -6,7 +6,6 @@ import { Props, StyledHamburgerProps } from "./types";
 const StyledHamburger = styled.div<StyledHamburgerProps>`
   width: 4rem;
   transform: scale(0.8);
-  cursor: pointer;
 
   :after,
   :before,
@@ -35,6 +34,10 @@ const StyledHamburger = styled.div<StyledHamburgerProps>`
       transform: scale(0);
     }
   `}
+
+  @media (min-width: 720px) {
+    cursor: pointer;
+  }
 `;
 
 const Hamburger = ({ opened, toggleHamburger }: Props) => (

@@ -89,7 +89,6 @@ const StyledIcon = styled(FontAwesomeIcon)`
   font-size: 1.8rem;
   color: ${({ theme }) => theme.primaryColor};
   transition: 0.2s;
-  cursor: pointer;
 
   :hover {
     transform: scale(1.25);
@@ -101,6 +100,10 @@ const StyledIcon = styled(FontAwesomeIcon)`
 
   @media (min-width: 350px) {
     font-size: 2.8rem;
+  }
+
+  @media (min-width: 720px) {
+    cursor: pointer;
   }
 `;
 
@@ -147,7 +150,7 @@ const Footer: React.FC<Props> = ({ footerState, footerPosition }) =>
           </A>
           .
         </P>
-        <P>magnetickode @2019</P>
+        <P>&copy; magnetickode {new Date().getFullYear()}</P>
       </div>
     </StyledFooter>
   ) : null;

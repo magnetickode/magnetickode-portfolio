@@ -35,12 +35,13 @@ const StyledHome = styled.div.attrs(({ opacity }: StyledHomeProps) => ({
 const P = styled.p`
   position: relative;
   font-family: "Righteous", cursive;
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   letter-spacing: 0.1rem;
   line-height: 2.7rem;
   max-width: 70rem;
+  margin-top: 5rem;
 
-  @media (min-height: 600px) {
+  @media (min-height: 800px) {
     ::before {
       content: "< />";
       position: absolute;
@@ -75,10 +76,10 @@ const P = styled.p`
 const Home: React.FC<Props> = ({ opacity }) => (
   <StyledHome opacity={opacity}>
     <P>
-      Hi I am Ashfaque Ahsan. I also go by the alias magnetickode. I am a Software
+      Hi, I am Ashfaque Ahsan. I also go by the alias magnetickode. I am a Software
       Engineer with experinece building apps for multiple platforms including Web, Mobile
-      and Desktop. My expertise lies in JavaScript technologies like React, Redux,
-      Node.js, Express etc.
+      and Desktop. I have a passion for turning ideas into code while following
+      sophisticated software design, principles and conventions.
     </P>
   </StyledHome>
 );

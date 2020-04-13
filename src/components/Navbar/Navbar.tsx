@@ -76,7 +76,6 @@ const Logo = styled.div`
   font-size: 2.6rem;
   user-select: none;
   transition: 0.2s;
-  cursor: pointer;
 
   :hover {
     transform: scale(1.05);
@@ -107,6 +106,10 @@ const Logo = styled.div`
     @media (min-width: 720px) {
       left: 5rem;
     }
+  }
+
+  @media (min-width: 720px) {
+    cursor: pointer;
   }
 `;
 

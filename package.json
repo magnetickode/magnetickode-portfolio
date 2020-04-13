@@ -45,7 +45,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "tslint './src/**/*.{ts,tsx}' --project tsconfig.json"
+    "lint": "tslint './src/**/*.{ts,tsx}' --project tsconfig.json",
+    "deploy": "firebase deploy"
   },
   "jest": {
     "snapshotSerializers": [
