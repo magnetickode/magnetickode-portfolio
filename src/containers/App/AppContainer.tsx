@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { ThemeProvider } from "styled-components";
+import { Helmet } from "react-helmet";
 
 import App from "../../components/App";
 import AppContext from "../../appContext";
@@ -10,6 +11,8 @@ const AppContainer = () => {
   const [themeIndex, setThemeIndex] = useState(1);
 
   useStorage(themeIndex, setThemeIndex, "local", "theme");
+
+  const theme = getTheme(themeIndex);
 
   const contextValue = {
     changeTheme() {
@@ -22,7 +25,17 @@ const AppContainer = () => {
   };
   return (
     <AppContext.Provider value={contextValue}>
-      <ThemeProvider theme={getTheme(themeIndex)}>
+      <Helmet>
+        <link rel="shortcut icon" href={theme.ico.favicon} />
+        <link rel="icon" href={theme.ico.size16} sizes="16x16" />
+        <link rel="icon" href={theme.ico.size32} sizes="32x32" />
+        <link rel="icon" href={theme.ico.size192} sizes="192x192" />
+        <link rel="icon" href={theme.ico.size512} sizes="512x512" />
+        <link rel="apple-touch-icon" href={theme.ico.appleTouch} />
+        <link rel="manifest" href={theme.ico.manifest} />
+        <meta name="theme-color" content={theme.primaryColor} />
+      </Helmet>
+      <ThemeProvider theme={theme}>
         <App />
       </ThemeProvider>
     </AppContext.Provider>
